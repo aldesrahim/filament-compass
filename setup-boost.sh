@@ -15,11 +15,11 @@ mkdir -p .ai/skills/filament-development
 cd "$(dirname "$0")"
 
 # Guidelines symlink
-ln -sf ../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -sf ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
 echo "✓ Created symlink: .ai/guidelines/filament/core.md -> filament-blueprint/GUIDELINES.md"
 
 # Skills symlink
-ln -sf ../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -sf ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
 echo "✓ Created symlink: .ai/skills/filament-development/SKILL.md -> filament-blueprint/SKILL.md"
 
 echo ""

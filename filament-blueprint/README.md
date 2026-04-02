@@ -47,11 +47,11 @@ cd /path/to/your/laravel/project
 # Add as submodule
 git submodule add https://github.com/aldesrahim/filament-blueprint.git filament-blueprint
 
-# Create symlinks
+# Create symlinks (from project root)
 mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
-ln -s ../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
 
 # Commit
 git add .gitmodules filament-blueprint .ai/
@@ -73,11 +73,11 @@ cd /path/to/your/laravel/project
 # Add as subtree
 git subtree add --prefix=filament-blueprint https://github.com/aldesrahim/filament-blueprint.git main --squash
 
-# Create symlinks
+# Create symlinks (from project root)
 mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
-ln -s ../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
 ```
 
 **To update:**
@@ -98,11 +98,11 @@ tar -xzf main.tar.gz
 mv filament-blueprint-main filament-blueprint
 rm main.tar.gz
 
-# Create symlinks
+# Create symlinks (from project root)
 mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
-ln -s ../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
 ```
 
 ### Method 5: Composer Package (Future)
@@ -167,10 +167,10 @@ your-project/
 ├── .ai/                           # Laravel Boost directories
 │   ├── guidelines/
 │   │   └── filament/
-│   │       └── core.md → ../../filament-blueprint/GUIDELINES.md
+│   │       └── core.md → ../../../filament-blueprint/GUIDELINES.md
 │   └── skills/
 │       └── filament-development/
-│           └── SKILL.md → ../../filament-blueprint/SKILL.md
+│           └── SKILL.md → ../../../filament-blueprint/SKILL.md
 │
 ├── filament-blueprint/            # Blueprint source (48 files)
 │   ├── BLUEPRINT.md

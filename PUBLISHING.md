@@ -52,8 +52,8 @@ git submodule add https://github.com/YOUR_USERNAME/filament-blueprint.git filame
 # Create symlinks
 mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
-ln -s ../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
 
 # Commit
 git add .gitmodules filament-blueprint .ai/
