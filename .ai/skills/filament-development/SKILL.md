@@ -1,0 +1,1 @@
+../../../filament-blueprint/SKILL.md

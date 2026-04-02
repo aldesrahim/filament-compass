@@ -1,0 +1,4 @@
+# Ensure symlinks are handled correctly across platforms
+.ai/* text eol=lf
+*.md text eol=lf
+setup-boost.sh text eol=lf
