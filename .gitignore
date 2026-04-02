@@ -2,6 +2,9 @@
 demo/
 filament/
 
+# Exclude .ai/ (created at user's project root, not in this repo)
+.ai/
+
 # OS files
 .DS_Store
 Thumbs.db

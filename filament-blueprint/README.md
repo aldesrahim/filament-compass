@@ -46,9 +46,10 @@ git submodule add https://github.com/YOUR_USERNAME/filament-blueprint.git filame
 mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
 
-# 3. Create symlinks (from project root)
-ln -s ../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+# 3. Create symlinks (run from PROJECT ROOT)
+# Note: Path is relative to symlink's location, not current directory
+ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
 
 # 4. Commit
 git add .gitmodules filament-blueprint .ai/
@@ -74,9 +75,10 @@ git subtree add --prefix=filament-blueprint https://github.com/YOUR_USERNAME/fil
 mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
 
-# 3. Create symlinks (from project root)
-ln -s ../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+# 3. Create symlinks (run from PROJECT ROOT)
+# Note: Path is relative to symlink's location, not current directory
+ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
 ```
 
 **To update:**
@@ -99,9 +101,10 @@ rm main.tar.gz
 mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
 
-# 3. Create symlinks (from project root)
-ln -s ../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+# 3. Create symlinks (run from PROJECT ROOT)
+# Note: Path is relative to symlink's location, not current directory
+ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
 ```
 
 ---
