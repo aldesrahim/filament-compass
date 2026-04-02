@@ -13,8 +13,8 @@ Go to https://github.com/new and create a new repository:
 ```bash
 # In this directory
 
-# Add remote (replace YOUR_USERNAME)
-git remote add origin https://github.com/YOUR_USERNAME/filament-blueprint.git
+# Add remote (replace aldesrahim)
+git remote add origin https://github.com/aldesrahim/filament-blueprint.git
 
 # Push to GitHub
 git push -u origin main
@@ -22,13 +22,13 @@ git push -u origin main
 
 ## Step 3: Update URLs
 
-Update `YOUR_USERNAME` in these files:
+Update `aldesrahim` in these files:
 - `README.md`
 - `install.sh`
 - `setup-boost.sh`
 
 ```bash
-sed -i 's/YOUR_USERNAME/your-actual-username/g' README.md install.sh setup-boost.sh
+sed -i 's/aldesrahim/your-actual-username/g' README.md install.sh setup-boost.sh
 
 git add .
 git commit -m "Update repository URLs"
@@ -43,7 +43,7 @@ git push
 
 ```bash
 cd /path/to/existing/project
-curl -s https://raw.githubusercontent.com/YOUR_USERNAME/filament-blueprint/main/install.sh | bash
+curl -s https://raw.githubusercontent.com/aldesrahim/filament-blueprint/main/install.sh | bash
 ```
 
 ### Option 2: Git Submodule (Recommended for Teams)
@@ -52,7 +52,7 @@ curl -s https://raw.githubusercontent.com/YOUR_USERNAME/filament-blueprint/main/
 cd /path/to/existing/project
 
 # 1. Add as submodule
-git submodule add https://github.com/YOUR_USERNAME/filament-blueprint.git filament-blueprint
+git submodule add https://github.com/aldesrahim/filament-blueprint.git filament-blueprint
 
 # 2. Create .ai/ at PROJECT ROOT
 mkdir -p .ai/guidelines/filament

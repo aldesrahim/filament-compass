@@ -20,7 +20,7 @@ if [ ! -d "filament-blueprint" ]; then
     echo ""
     echo "Please ensure filament-blueprint/ exists in your project root."
     echo "You can install it using:"
-    echo "  git submodule add https://github.com/YOUR_USERNAME/filament-blueprint.git filament-blueprint"
+    echo "  git submodule add https://github.com/aldesrahim/filament-blueprint.git filament-blueprint"
     exit 1
 fi
 

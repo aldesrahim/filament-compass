@@ -5,7 +5,7 @@
 #
 # Usage:
 #   cd /path/to/your/laravel/project
-#   curl -s https://raw.githubusercontent.com/YOUR_USERNAME/filament-blueprint/main/install.sh | bash
+#   curl -s https://raw.githubusercontent.com/aldesrahim/filament-blueprint/main/install.sh | bash
 #
 # Or:
 #   ./install.sh
@@ -38,7 +38,7 @@ fi
 
 # Download
 echo "Downloading Filament Blueprint..."
-REPO_URL="https://github.com/YOUR_USERNAME/filament-blueprint"
+REPO_URL="https://github.com/aldesrahim/filament-blueprint"
 git clone --depth 1 "$REPO_URL" "$BLUEPRINT_DIR" 2>/dev/null || {
     echo "❌ Failed to clone repository. Please check your internet connection."
     exit 1
