@@ -1,8 +1,7 @@
-# Exclude source folders (these are for reference only)
-demo/
-filament/
+# Source folders (reference only, not tracked)
+source/
 
-# Exclude .ai/ (created at user's project root, not in this repo)
+# Laravel Boost (created at user's project root)
 .ai/
 
 # OS files

@@ -33,8 +33,8 @@ mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
 
 # Create symlinks
-ln -sf ../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -sf ../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -sf ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -sf ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
 
 echo "✓ Created symlinks:"
 echo "  .ai/guidelines/filament/core.md → filament-blueprint/GUIDELINES.md"

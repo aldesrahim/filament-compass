@@ -11,7 +11,7 @@ Go to https://github.com/new and create a new repository:
 ## Step 2: Push to GitHub
 
 ```bash
-# In the filament-blueprint-clone directory
+# In this directory
 
 # Add remote (replace YOUR_USERNAME)
 git remote add origin https://github.com/YOUR_USERNAME/filament-blueprint.git
@@ -23,12 +23,12 @@ git push -u origin main
 ## Step 3: Update URLs
 
 Update `YOUR_USERNAME` in these files:
-- `filament-blueprint/README.md`
+- `README.md`
 - `install.sh`
+- `setup-boost.sh`
 
 ```bash
-sed -i 's/YOUR_USERNAME/your-actual-username/g' filament-blueprint/README.md
-sed -i 's/YOUR_USERNAME/your-actual-username/g' install.sh
+sed -i 's/YOUR_USERNAME/your-actual-username/g' README.md install.sh setup-boost.sh
 
 git add .
 git commit -m "Update repository URLs"
@@ -54,13 +54,13 @@ cd /path/to/existing/project
 # 1. Add as submodule
 git submodule add https://github.com/YOUR_USERNAME/filament-blueprint.git filament-blueprint
 
-# 2. Create .ai/ at PROJECT ROOT (not inside filament-blueprint/)
+# 2. Create .ai/ at PROJECT ROOT
 mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
 
 # 3. Create symlinks (from project root)
-ln -s ../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
 
 # 4. Commit
 git add .gitmodules filament-blueprint .ai/
@@ -77,16 +77,16 @@ git submodule update --remote filament-blueprint
 ## Directory Structure After Installation
 
 ```
-existing-project/                      # <- USER'S PROJECT ROOT
-├── .ai/                               # <- Created at project root
+existing-project/                      # USER'S PROJECT ROOT
+├── .ai/                               # Created at project root
 │   ├── guidelines/
 │   │   └── filament/
-│   │       └── core.md → ../../filament-blueprint/GUIDELINES.md
+│   │       └── core.md → ../../../filament-blueprint/GUIDELINES.md
 │   └── skills/
 │       └── filament-development/
-│           └── SKILL.md → ../../filament-blueprint/SKILL.md
+│           └── SKILL.md → ../../../filament-blueprint/SKILL.md
 │
-├── filament-blueprint/                # <- Submodule or downloaded folder
+├── filament-blueprint/                # Submodule or downloaded folder
 │   ├── BLUEPRINT.md
 │   ├── SKILL.md
 │   ├── GUIDELINES.md
@@ -111,15 +111,15 @@ existing-project/                      # <- USER'S PROJECT ROOT
 **Always run commands from the USER'S PROJECT ROOT:**
 
 ```bash
-cd /path/to/existing/project   # <- Project root (where artisan is)
+cd /path/to/existing/project   # Project root (where artisan is)
 
 # Create .ai/
 mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
 
 # Create symlinks from .ai/ to filament-blueprint/
-ln -s ../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
 ```
 
 **NOT:**
@@ -139,14 +139,19 @@ When users clone/add this repo, they get:
 
 ```
 filament-blueprint/              # The repo they clone
-├── filament-blueprint/          # The actual documentation
-│   ├── BLUEPRINT.md
-│   ├── SKILL.md
-│   ├── GUIDELINES.md
-│   └── ... (48 documentation files)
-├── install.sh                   # Install script
-├── setup-boost.sh               # Setup script (run from project root)
-├── PUBLISHING.md                # This file
+├── BLUEPRINT.md
+├── SKILL.md
+├── GUIDELINES.md
+├── README.md
+├── PLAN.md
+├── architecture/
+├── packages/
+├── patterns/
+├── testing/
+├── recipes/
+├── reference/
+├── install.sh
+├── setup-boost.sh
 └── .gitignore
 ```
 

@@ -112,19 +112,21 @@ ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL
 ## Directory Structure After Installation
 
 ```
-your-project/                          # <- YOUR PROJECT ROOT
-├── .ai/                               # <- Created at project root
+your-project/                         # YOUR PROJECT ROOT
+├── .ai/                              # Created at project root
 │   ├── guidelines/
 │   │   └── filament/
-│   │       └── core.md → ../../filament-blueprint/GUIDELINES.md
+│   │       └── core.md → ../../../filament-blueprint/GUIDELINES.md
 │   └── skills/
 │       └── filament-development/
-│           └── SKILL.md → ../../filament-blueprint/SKILL.md
+│           └── SKILL.md → ../../../filament-blueprint/SKILL.md
 │
-├── filament-blueprint/                # <- Blueprint docs (submodule/folder)
+├── filament-blueprint/               # Blueprint (submodule/folder)
 │   ├── BLUEPRINT.md
 │   ├── SKILL.md
 │   ├── GUIDELINES.md
+│   ├── README.md
+│   ├── PLAN.md
 │   ├── architecture/
 │   ├── packages/
 │   ├── patterns/
@@ -132,10 +134,7 @@ your-project/                          # <- YOUR PROJECT ROOT
 │   ├── recipes/
 │   └── reference/
 │
-├── app/                               # <- Your Laravel app
-├── config/
-├── routes/
-└── ...
+└── [your Laravel app files]
 ```
 
 **Important:**
@@ -149,13 +148,14 @@ your-project/                          # <- YOUR PROJECT ROOT
 
 From `.ai/guidelines/filament/core.md`:
 - `../` → `.ai/guidelines/`
-- `../../` → `.ai/`  
-- `../../filament-blueprint/` → `your-project/filament-blueprint/` ✅
+- `../../` → `.ai/`
+- `../../../` → project root
+- `../../../filament-blueprint/GUIDELINES.md` ✅
 
 ```bash
 # Run these commands from YOUR PROJECT ROOT
-ln -s ../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
 ```
 
 ---

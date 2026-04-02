@@ -5,7 +5,7 @@ This document instructs agents on how to update the Filament Blueprint when new 
 ## When to Update
 
 Trigger an update when:
-- Filament packages are updated (check `filament/composer.json` versions)
+- Filament packages are updated (check `source/source/filament/composer.json` versions)
 - New components are added to packages
 - Breaking changes appear in upgrade guide
 - New patterns are implemented in demo
@@ -17,7 +17,7 @@ Trigger an update when:
 
 ```bash
 # Read current versions
-cat filament/composer.json | grep -A 50 '"require"'
+cat source/source/filament/composer.json | grep -A 50 '"require"'
 ```
 
 Compare with last recorded versions in `reference/versions.md`.
@@ -26,7 +26,7 @@ Compare with last recorded versions in `reference/versions.md`.
 
 ```bash
 # Review breaking changes
-cat filament/docs/14-upgrade-guide.md
+cat source/source/filament/docs/14-upgrade-guide.md
 ```
 
 ### 3. Scan for New Components
@@ -35,26 +35,26 @@ For each package, check for new files:
 
 ```bash
 # Forms components
-ls filament/packages/forms/src/Components/
+ls source/source/filament/packages/forms/src/Components/
 
 # Tables columns
-ls filament/packages/tables/src/Columns/
+ls source/source/filament/packages/tables/src/Columns/
 
 # Infolists entries
-ls filament/packages/infolists/src/Components/
+ls source/source/filament/packages/infolists/src/Components/
 
 # Schema components
-ls filament/packages/schemas/src/Components/
+ls source/source/filament/packages/schemas/src/Components/
 
 # Actions
-ls filament/packages/actions/src/
+ls source/source/filament/packages/actions/src/
 
 # Widgets
-ls filament/packages/widgets/src/
+ls source/filament/packages/widgets/src/
 
 # Panels Resources pages
-ls filament/packages/panels/src/Pages/
-ls filament/packages/panels/src/Resources/
+ls source/filament/packages/panels/src/Pages/
+ls source/filament/packages/panels/src/Resources/
 ```
 
 ### 4. Check Package Docs
@@ -63,18 +63,18 @@ Each package has its own docs:
 
 ```bash
 # Package-specific docs
-ls filament/packages/forms/docs/
-ls filament/packages/tables/docs/
-ls filament/packages/infolists/docs/
-ls filament/packages/actions/docs/
-ls filament/packages/panels/docs/  # if exists
+ls source/filament/packages/forms/docs/
+ls source/filament/packages/tables/docs/
+ls source/filament/packages/infolists/docs/
+ls source/filament/packages/actions/docs/
+ls source/filament/packages/panels/docs/  # if exists
 ```
 
 ### 5. Review Demo for New Patterns
 
 ```bash
 # Check for new resources, schemas, tables, widgets
-find demo/app/Filament -type f -name "*.php" -newer filament-blueprint/PLAN.md
+find source/demo/app/Filament -type f -name "*.php" -newer filament-blueprint/PLAN.md
 ```
 
 ## Update Checklist
@@ -179,7 +179,7 @@ ClassName::make('name')
 ### Real Example
 
 ```php
-// From: demo/app/Filament/Path/File.php
+// From: source/demo/app/Filament/Path/File.php
 ClassName::make('name')
     ->method()
     ->anotherMethod()
@@ -199,8 +199,8 @@ Each file should start with:
 
 > Package: `filament/{package}` | Version: v5.x
 > 
-> Source: `filament/packages/{package}/src/`
-> Docs: `filament/packages/{package}/docs/`
+> Source: `source/filament/packages/{package}/src/`
+> Docs: `source/filament/packages/{package}/docs/`
 ```
 
 ## Key Source Files
@@ -209,9 +209,9 @@ Each file should start with:
 
 | Source | Content |
 |--------|---------|
-| `filament/docs/` | Main panel docs |
-| `filament/docs/14-upgrade-guide.md` | Breaking changes |
-| `filament/packages/{package}/docs/` | Package-specific docs |
+| `source/filament/docs/` | Main panel docs |
+| `source/filament/docs/14-upgrade-guide.md` | Breaking changes |
+| `source/filament/packages/{package}/docs/` | Package-specific docs |
 | `filament/CLAUDE.md` | Coding patterns |
 | `demo/CLAUDE.md` | Demo conventions |
 
@@ -232,14 +232,14 @@ Each file should start with:
 
 | Pattern | Location |
 |---------|----------|
-| Resources | `demo/app/Filament/Resources/` |
-| Schemas (Forms) | `demo/app/Filament/Resources/*/Schemas/` |
-| Tables | `demo/app/Filament/Resources/*/Tables/` |
-| Widgets | `demo/app/Filament/Resources/*/Widgets/`, `demo/app/Filament/Widgets/` |
-| RelationManagers | `demo/app/Filament/Resources/*/RelationManagers/` |
-| Imports | `demo/app/Filament/Imports/` |
-| Exports | `demo/app/Filament/Exports/` |
-| Custom Pages | `demo/app/Filament/App/Pages/` |
+| Resources | `source/demo/app/Filament/Resources/` |
+| Schemas (Forms) | `source/demo/app/Filament/Resources/*/Schemas/` |
+| Tables | `source/demo/app/Filament/Resources/*/Tables/` |
+| Widgets | `source/demo/app/Filament/Resources/*/Widgets/`, `source/demo/app/Filament/Widgets/` |
+| RelationManagers | `source/demo/app/Filament/Resources/*/RelationManagers/` |
+| Imports | `source/demo/app/Filament/Imports/` |
+| Exports | `source/demo/app/Filament/Exports/` |
+| Custom Pages | `source/demo/app/Filament/App/Pages/` |
 
 ## Update Execution Steps
 
@@ -270,7 +270,7 @@ Last scanned: YYYY-MM-DD
 
 ## Breaking Change Handling
 
-When processing `filament/docs/14-upgrade-guide.md`:
+When processing `source/filament/docs/14-upgrade-guide.md`:
 
 1. Extract all breaking changes
 2. Classify by impact:
@@ -298,21 +298,21 @@ After updating, verify:
 
 ```bash
 # List all form components
-ls filament/packages/forms/src/Components/*.php | xargs -I {} basename {} .php
+ls source/filament/packages/forms/src/Components/*.php | xargs -I {} basename {} .php
 
 # List all table columns
-ls filament/packages/tables/src/Columns/*.php | xargs -I {} basename {} .php
+ls source/filament/packages/tables/src/Columns/*.php | xargs -I {} basename {} .php
 
 # List all infolist entries
-ls filament/packages/infolists/src/Components/*.php | xargs -I {} basename {} .php
+ls source/filament/packages/infolists/src/Components/*.php | xargs -I {} basename {} .php
 
 # List all actions
-ls filament/packages/actions/src/*.php | xargs -I {} basename {} .php
+ls source/filament/packages/actions/src/*.php | xargs -I {} basename {} .php
 
 # Find demo resources
-find demo/app/Filament/Resources -name "*Resource.php"
+find source/demo/app/Filament/Resources -name "*Resource.php"
 
 # Check package docs
-ls filament/packages/forms/docs/*.md
-ls filament/packages/tables/docs/*.md
+ls source/filament/packages/forms/docs/*.md
+ls source/filament/packages/tables/docs/*.md
 ```
