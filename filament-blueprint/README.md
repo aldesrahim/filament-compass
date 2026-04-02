@@ -1,6 +1,6 @@
 # Filament Blueprint
 
-[![Latest Version](https://img.shields.io/github/release/YOUR_USERNAME/filament-blueprint.svg?style=flat-square)](https://github.com/YOUR_USERNAME/filament-blueprint/releases)
+[![Latest Version](https://img.shields.io/github/release/aldesrahim/filament-blueprint.svg?style=flat-square)](https://github.com/aldesrahim/filament-blueprint/releases)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
 Comprehensive documentation for Filament v5, designed for LLMs and Laravel Boost integration.
@@ -9,7 +9,7 @@ Comprehensive documentation for Filament v5, designed for LLMs and Laravel Boost
 
 ```bash
 # In your Laravel project
-curl -s https://raw.githubusercontent.com/YOUR_USERNAME/filament-blueprint/main/install.sh | bash
+curl -s https://raw.githubusercontent.com/aldesrahim/filament-blueprint/main/install.sh | bash
 ```
 
 ## Overview
@@ -29,7 +29,7 @@ This blueprint provides two formats for AI context:
 
 ```bash
 cd /path/to/your/laravel/project
-curl -s https://raw.githubusercontent.com/YOUR_USERNAME/filament-blueprint/main/install.sh | bash
+curl -s https://raw.githubusercontent.com/aldesrahim/filament-blueprint/main/install.sh | bash
 ```
 
 This will:
@@ -45,7 +45,7 @@ Best for keeping the blueprint updated:
 cd /path/to/your/laravel/project
 
 # Add as submodule
-git submodule add https://github.com/YOUR_USERNAME/filament-blueprint.git filament-blueprint
+git submodule add https://github.com/aldesrahim/filament-blueprint.git filament-blueprint
 
 # Create symlinks
 mkdir -p .ai/guidelines/filament
@@ -71,7 +71,7 @@ Embeds the blueprint into your repo (no external dependency):
 cd /path/to/your/laravel/project
 
 # Add as subtree
-git subtree add --prefix=filament-blueprint https://github.com/YOUR_USERNAME/filament-blueprint.git main --squash
+git subtree add --prefix=filament-blueprint https://github.com/aldesrahim/filament-blueprint.git main --squash
 
 # Create symlinks
 mkdir -p .ai/guidelines/filament
@@ -82,7 +82,7 @@ ln -s ../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
 
 **To update:**
 ```bash
-git subtree pull --prefix=filament-blueprint https://github.com/YOUR_USERNAME/filament-blueprint.git main --squash
+git subtree pull --prefix=filament-blueprint https://github.com/aldesrahim/filament-blueprint.git main --squash
 ```
 
 ### Method 4: Manual Copy
@@ -93,7 +93,7 @@ Simple one-time setup without git integration:
 cd /path/to/your/laravel/project
 
 # Download
-wget https://github.com/YOUR_USERNAME/filament-blueprint/archive/refs/heads/main.tar.gz
+wget https://github.com/aldesrahim/filament-blueprint/archive/refs/heads/main.tar.gz
 tar -xzf main.tar.gz
 mv filament-blueprint-main filament-blueprint
 rm main.tar.gz
@@ -202,7 +202,7 @@ php artisan boost:update
 ### If using Git Subtree
 
 ```bash
-git subtree pull --prefix=filament-blueprint https://github.com/YOUR_USERNAME/filament-blueprint.git main --squash
+git subtree pull --prefix=filament-blueprint https://github.com/aldesrahim/filament-blueprint.git main --squash
 php artisan boost:update
 ```
 
@@ -210,7 +210,7 @@ php artisan boost:update
 
 ```bash
 # Re-run the installer
-curl -s https://raw.githubusercontent.com/YOUR_USERNAME/filament-blueprint/main/install.sh | bash
+curl -s https://raw.githubusercontent.com/aldesrahim/filament-blueprint/main/install.sh | bash
 ```
 
 ---
