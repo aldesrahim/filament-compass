@@ -6,7 +6,7 @@ Go to https://github.com/new and create a new repository:
 - Name: `filament-blueprint`
 - Description: `Comprehensive documentation for Filament v5, designed for LLMs and Laravel Boost integration`
 - Public or Private (your choice)
-- **Do NOT** initialize with README (we already have one)
+- **Do NOT** initialize with README
 
 ## Step 2: Push to GitHub
 
@@ -22,16 +22,13 @@ git push -u origin main
 
 ## Step 3: Update URLs
 
-After pushing, update these files with your actual GitHub username:
-
-1. `install.sh` - Line with `REPO_URL`
-2. `filament-blueprint/README.md` - All `YOUR_USERNAME` placeholders
-3. Badge URLs in `filament-blueprint/README.md`
+Update `YOUR_USERNAME` in these files:
+- `filament-blueprint/README.md`
+- `install.sh`
 
 ```bash
-# Quick find and replace
-sed -i 's/YOUR_USERNAME/your-actual-username/g' install.sh
 sed -i 's/YOUR_USERNAME/your-actual-username/g' filament-blueprint/README.md
+sed -i 's/YOUR_USERNAME/your-actual-username/g' install.sh
 
 git add .
 git commit -m "Update repository URLs"
@@ -40,55 +37,117 @@ git push
 
 ---
 
-## For Users Installing Into Existing Projects
+## For Users: Installing Into Existing Projects
 
-### Option 1: Git Submodule (Recommended for teams)
-
-```bash
-cd /path/to/existing/project
-
-git submodule add https://github.com/YOUR_USERNAME/filament-blueprint.git filament-blueprint
-
-# Create symlinks
-mkdir -p .ai/guidelines/filament
-mkdir -p .ai/skills/filament-development
-ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
-
-# Commit
-git add .gitmodules filament-blueprint .ai/
-git commit -m "Add Filament Blueprint"
-```
-
-### Option 2: One-Line Install
+### Option 1: One-Line Install (Easiest)
 
 ```bash
 cd /path/to/existing/project
 curl -s https://raw.githubusercontent.com/YOUR_USERNAME/filament-blueprint/main/install.sh | bash
 ```
 
-### Option 3: Git Clone (Not recommended for existing projects)
+### Option 2: Git Submodule (Recommended for Teams)
 
 ```bash
-# This creates a nested git repo, which can cause issues
-git clone https://github.com/YOUR_USERNAME/filament-blueprint.git
+cd /path/to/existing/project
+
+# 1. Add as submodule
+git submodule add https://github.com/YOUR_USERNAME/filament-blueprint.git filament-blueprint
+
+# 2. Create .ai/ at PROJECT ROOT (not inside filament-blueprint/)
+mkdir -p .ai/guidelines/filament
+mkdir -p .ai/skills/filament-development
+
+# 3. Create symlinks (from project root)
+ln -s ../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+
+# 4. Commit
+git add .gitmodules filament-blueprint .ai/
+git commit -m "Add Filament Blueprint"
 ```
 
-**Better to use submodule or the install script instead.**
+**To update:**
+```bash
+git submodule update --remote filament-blueprint
+```
 
 ---
 
-## Directory Structure After Integration
+## Directory Structure After Installation
 
 ```
-existing-project/
-├── .ai/                           # Laravel Boost
-│   ├── guidelines/filament/core.md → filament-blueprint/GUIDELINES.md
-│   └── skills/filament-development/SKILL.md → filament-blueprint/SKILL.md
-├── .gitmodules                     # If using submodule
-├── filament-blueprint/             # Blueprint files
-│   └── ... (48 documentation files)
-├── app/
+existing-project/                      # <- USER'S PROJECT ROOT
+├── .ai/                               # <- Created at project root
+│   ├── guidelines/
+│   │   └── filament/
+│   │       └── core.md → ../../filament-blueprint/GUIDELINES.md
+│   └── skills/
+│       └── filament-development/
+│           └── SKILL.md → ../../filament-blueprint/SKILL.md
+│
+├── filament-blueprint/                # <- Submodule or downloaded folder
+│   ├── BLUEPRINT.md
+│   ├── SKILL.md
+│   ├── GUIDELINES.md
+│   ├── architecture/
+│   ├── packages/
+│   ├── patterns/
+│   ├── testing/
+│   ├── recipes/
+│   └── reference/
+│
+├── .gitmodules                        # (if using submodule)
+├── app/                               # User's Laravel app
 ├── config/
-└── ... (your existing Laravel files)
+├── routes/
+└── ...
 ```
+
+---
+
+## Where to Run Commands
+
+**Always run commands from the USER'S PROJECT ROOT:**
+
+```bash
+cd /path/to/existing/project   # <- Project root (where artisan is)
+
+# Create .ai/
+mkdir -p .ai/guidelines/filament
+mkdir -p .ai/skills/filament-development
+
+# Create symlinks from .ai/ to filament-blueprint/
+ln -s ../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+```
+
+**NOT:**
+```bash
+# ❌ Don't run from inside filament-blueprint/
+cd filament-blueprint
+
+# ❌ Don't run from inside .ai/
+cd .ai/guidelines/filament
+```
+
+---
+
+## Repository Contents
+
+When users clone/add this repo, they get:
+
+```
+filament-blueprint/              # The repo they clone
+├── filament-blueprint/          # The actual documentation
+│   ├── BLUEPRINT.md
+│   ├── SKILL.md
+│   ├── GUIDELINES.md
+│   └── ... (48 documentation files)
+├── install.sh                   # Install script
+├── setup-boost.sh               # Setup script (run from project root)
+├── PUBLISHING.md                # This file
+└── .gitignore
+```
+
+**Note:** The `.ai/` directory is NOT in the repo. Users create it at their project root.
