@@ -47,7 +47,7 @@ if [ -f "$(dirname "$0")/BLUEPRINT.md" ]; then
 else
     # Download from GitHub
     echo "Downloading from GitHub..."
-    REPO_URL="https://github.com/YOUR_USERNAME/filament-blueprint"
+    REPO_URL="https://github.com/aldesrahim/filament-blueprint"
     git clone --depth 1 "$REPO_URL" "$BLUEPRINT_DIR"
     rm -rf "$BLUEPRINT_DIR/.git"
 fi
