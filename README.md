@@ -75,7 +75,7 @@ This will:
 
 ### Method 2: Git Submodule
 
-Best for teams - keeps the blueprint updated:
+Best for teams - keeps the filament-compass updated:
 
 ```bash
 cd /path/to/your/laravel/project
@@ -104,7 +104,7 @@ git submodule update --remote filament-compass
 
 ### Method 3: Git Subtree
 
-Embeds the blueprint into your repo:
+Embeds the filament-compass into your repo:
 
 ```bash
 cd /path/to/your/laravel/project
