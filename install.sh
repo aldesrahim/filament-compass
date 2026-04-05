@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Filament Blueprint - Install Script
-# Installs Filament Blueprint into an existing Laravel project
+# Filament Compass - Install Script
+# Installs Filament Compass into an existing Laravel project
 #
 # Usage:
 #   cd /path/to/your/laravel/project
-#   curl -s https://raw.githubusercontent.com/aldesrahim/filament-blueprint/main/install.sh | bash
+#   curl -s https://raw.githubusercontent.com/aldesrahim/filament-compass/main/install.sh | bash
 #
 # Or:
 #   ./install.sh
@@ -15,39 +15,39 @@ set -e
 TARGET_DIR="$(pwd)"
 
 echo "╔════════════════════════════════════════════════════════════╗"
-echo "║     Filament Blueprint - Installation                       ║"
+echo "║     Filament Compass - Installation                       ║"
 echo "╚════════════════════════════════════════════════════════════╝"
 echo ""
 
 echo "Target directory: $TARGET_DIR"
 echo ""
 
-BLUEPRINT_DIR="$TARGET_DIR/filament-blueprint"
+COMPASS_DIR="$TARGET_DIR/filament-compass"
 
-# Check if filament-blueprint already exists
-if [ -d "$BLUEPRINT_DIR" ]; then
-    echo "⚠️  filament-blueprint/ already exists."
+# Check if filament-compass al ready exists
+if [ -d "$COMPASS_DIR" ]; then
+    echo "⚠️  filament-compass/ already exists."
     read -p "Remove and reinstall? (y/N) " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
         echo "Aborted."
         exit 1
     fi
-    rm -rf "$BLUEPRINT_DIR"
+    rm -rf "$COMPASS_DIR"
 fi
 
 # Download
-echo "Downloading Filament Blueprint..."
-REPO_URL="https://github.com/aldesrahim/filament-blueprint"
-git clone --depth 1 "$REPO_URL" "$BLUEPRINT_DIR" 2>/dev/null || {
+echo "Downloading Filament Compass..."
+REPO_URL="https://github.com/aldesrahim/filament-compass"
+git clone --depth 1 "$REPO_URL" "$COMPASS_DIR" 2>/dev/null || {
     echo "❌ Failed to clone repository. Please check your internet connection."
     exit 1
 }
 
 # Remove .git from the clone
-rm -rf "$BLUEPRINT_DIR/.git"
+rm -rf "$COMPASS_DIR/.git"
 
-echo "✓ Downloaded to: filament-blueprint/"
+echo "✓ Downloaded to: filament-compass/"
 echo ""
 
 # Create .ai directories at PROJECT ROOT
@@ -55,13 +55,13 @@ echo "Creating .ai/ directory at project root..."
 mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
 
-# Create symlinks from .ai/ to filament-blueprint/
-ln -sf ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -sf ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+# Create symlinks from .ai/ to filament-compass/
+ln -sf ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -sf ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
 
 echo "✓ Created symlinks in .ai/"
-echo "  .ai/guidelines/filament/core.md → filament-blueprint/GUIDELINES.md"
-echo "  .ai/skills/filament-development/SKILL.md → filament-blueprint/SKILL.md"
+echo "  .ai/guidelines/filament/core.md → filament-compass/GUIDELINES.md"
+echo "  .ai/skills/filament-development/SKILL.md → filament-compass/SKILL.md"
 echo ""
 
 # Summary
@@ -74,7 +74,7 @@ echo "  $TARGET_DIR/"
 echo "  ├── .ai/                          (Laravel Boost)"
 echo "  │   ├── guidelines/filament/"
 echo "  │   └── skills/filament-development/"
-echo "  └── filament-blueprint/           (Documentation)"
+echo "  └── filament-compass/           (Documentation)"
 echo ""
 
 # Check for Laravel Boost
@@ -92,6 +92,6 @@ elif [ -f "artisan" ]; then
 else
     echo "ℹ️  Not a Laravel project."
     echo ""
-    echo "You can still use the blueprint by reading:"
-    echo "  filament-blueprint/BLUEPRINT.md"
+    echo "You can still use the compass by reading:"
+    echo "  filament-compass/COMPASS.md"
 fi

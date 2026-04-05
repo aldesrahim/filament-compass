@@ -1,4 +1,4 @@
-# Filament Blueprint Guidelines
+# Filament Compass Guidelines
 
 > This file contains guidelines for Laravel Boost. Copy relevant sections to your CLAUDE.md file.
 
@@ -115,7 +115,7 @@ public static function table(Table $table): Table
 
 This project has Filament-specific skills available. Activate the relevant skill when working with Filament:
 
-- `filament-blueprint` — Comprehensive Filament v5 documentation and patterns. Activates when creating resources, forms, tables, actions, widgets, planning Filament applications, or when the user mentions Filament, Laravel admin, CRUD, resources, or panels.
+- `filament-compass` — Comprehensive Filament v5 documentation and patterns. Activates when creating resources, forms, tables, actions, widgets, planning Filament applications, or when the user mentions Filament, Laravel admin, CRUD, resources, or panels.
 
 ## Artisan Commands
 
@@ -171,7 +171,7 @@ livewire(CreateProduct::class)
 2. **Install the skill** for on-demand detailed patterns:
 
 ```bash
-# The SKILL.md file in filament-blueprint/ acts as an on-demand skill
+# The SKILL.md file in filament-compass/ acts as an on-demand skill
 # Point to it when working on Filament-specific tasks
 ```
 

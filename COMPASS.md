@@ -1,4 +1,4 @@
-# Filament Blueprint
+# Filament Compass
 
 > A comprehensive reference for building Filament v5 applications with Laravel v12.
 > 
@@ -53,10 +53,10 @@ app/Filament/Resources/{Domain}/{Entity}/
     └── {Entity}Stats.php     # Resource-specific widgets
 ```
 
-## Blueprint Structure
+## Compass Structure
 
 ```
-filament-blueprint/
+filament-compass/
 ├── architecture/       # Core concepts, naming, directory structure
 ├── packages/           # Component catalogs by package
 │   ├── panels/         # Resources, pages, widgets, panels
@@ -226,7 +226,7 @@ class ProductResource extends Resource
 
 ## Planning a Filament Application
 
-When asked to create a Filament blueprint for an application, follow this process:
+When asked to create a Filament Compass for an application, follow this process:
 
 ### 1. Domain Analysis
 

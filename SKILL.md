@@ -3,7 +3,7 @@ name: filament-development
 description: Build and work with Filament v5 admin panels, resources, forms, tables, actions, widgets, and Livewire-based CRUD interfaces.
 ---
 
-# Filament Blueprint Skill
+# Filament Compass Skill
 
 > On-demand skill for detailed Filament v5 implementation patterns.
 > 
@@ -23,8 +23,8 @@ Activate this skill when:
 
 This skill reads from:
 ```
-filament-blueprint/
-├── BLUEPRINT.md           # Main entry - read first
+filament-compass/
+├── COMPASS.md           # Main entry - read first
 ├── packages/              # Component catalogs
 ├── patterns/              # Implementation patterns
 ├── testing/               # Testing guides
@@ -34,9 +34,9 @@ filament-blueprint/
 
 ## How to Use This Skill
 
-### Step 1: Read the Blueprint Entry
+### Step 1: Read the Compass Entry
 
-Start by reading `filament-blueprint/BLUEPRINT.md` for:
+Start by reading `filament-compass/COMPASS.md` for:
 - Quick namespace reference
 - Common mistakes
 - Structure overview
@@ -105,7 +105,7 @@ Then produce:
 - Action definitions
 - Authorization rules
 
-Read `BLUEPRINT.md` section "Planning a Filament Application" for the complete process.
+Read `COMPASS.md` section "Planning a Filament Application" for the complete process.
 
 ## Quick Code Patterns
 
@@ -198,7 +198,7 @@ livewire(ListProducts::class)
 
 ## Do NOT
 
-- Do NOT provide Filament help without reading the blueprint first
+- Do NOT provide Filament help without reading the compass first
 - Do NOT use incorrect namespaces (check `reference/namespaces.md`)
 - Do NOT use string icons - use `Heroicon` enum
 - Do NOT forget `visibility('public')` for file uploads

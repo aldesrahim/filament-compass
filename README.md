@@ -1,9 +1,50 @@
-# Filament Blueprint
+# Filament Compass
 
-[![Latest Version](https://img.shields.io/github/release/aldesrahim/filament-blueprint.svg?style=flat-square)](https://github.com/aldesrahim/filament-blueprint/releases)
+[![Latest Version](https://img.shields.io/github/release/aldesrahim/filament-compass.svg?style=flat-square)](https://github.com/aldesrahim/filament-compass/releases)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 
-Comprehensive documentation for Filament v5, designed for LLMs and Laravel Boost integration.
+Comprehensive documentation for Filament v5, designed for LLMs and AI-assisted development.
+
+## Recommended Stack
+
+Filament Compass works best as part of this AI-assisted development workflow:
+
+| Tool | Role |
+|------|------|
+| **[laravel/boost](https://github.com/laravel/boost)** | MCP server that loads `.ai/` context files into Claude Code, giving your AI assistant Laravel-specific knowledge |
+| **Filament Compass** (this repo) | Provides Filament-specific patterns, conventions, and recipes — loaded into Boost via `.ai/` symlinks |
+| **[laraveldaily/filacheck](https://github.com/laraveldaily/filacheck)** | Static analyzer that validates AI-generated Filament code, catching deprecated methods and wrong namespaces |
+
+**The workflow:** Boost loads Compass into the AI → AI generates accurate Filament code → FilaCheck validates the output.
+
+### Full Stack Setup
+
+```bash
+cd /path/to/your/laravel/project
+
+# Step 1 — Install Filament Compass (this repo)
+curl -s https://raw.githubusercontent.com/aldesrahim/filament-compass/main/install.sh | bash
+
+# Step 2 — Install Laravel Boost
+composer require laravel/boost --dev
+php artisan boost:install
+
+# Step 3 — Register Boost MCP with Claude Code (usually auto-registered by boost:install)
+claude mcp add -s local -t stdio laravel-boost php artisan boost:mcp
+
+# Step 4 — Install FilaCheck
+composer require laraveldaily/filacheck --dev
+```
+
+After setup, run FilaCheck to validate AI-generated Filament code:
+
+```bash
+vendor/bin/filacheck              # scan app/Filament
+vendor/bin/filacheck --dirty      # scan only uncommitted files
+vendor/bin/filacheck --fix        # auto-fix detected issues (beta)
+```
+
+---
 
 ## Overview
 
@@ -24,11 +65,11 @@ This blueprint provides two formats for AI context:
 cd /path/to/your/laravel/project
 
 # Download and install
-curl -s https://raw.githubusercontent.com/aldesrahim/filament-blueprint/main/install.sh | bash
+curl -s https://raw.githubusercontent.com/aldesrahim/filament-compass/main/install.sh | bash
 ```
 
 This will:
-1. Download `filament-blueprint/` to your project root
+1. Download `filament-compass/` to your project root
 2. Create `.ai/` directory with symlinks for Laravel Boost
 3. Detect if Laravel Boost is installed
 
@@ -40,25 +81,25 @@ Best for teams - keeps the blueprint updated:
 cd /path/to/your/laravel/project
 
 # 1. Add as submodule
-git submodule add https://github.com/aldesrahim/filament-blueprint.git filament-blueprint
+git submodule add https://github.com/aldesrahim/filament-compass.git filament-compass
 
-# 2. Create .ai directory at PROJECT ROOT (not inside filament-blueprint/)
+# 2. Create .ai directory at PROJECT ROOT (not inside filament-compass/)
 mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
 
 # 3. Create symlinks (run from PROJECT ROOT)
 # Note: Path is relative to symlink's location, not current directory
-ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
 
 # 4. Commit
-git add .gitmodules filament-blueprint .ai/
-git commit -m "Add Filament Blueprint"
+git add .gitmodules filament-compass .ai/
+git commit -m "Add Filament Compass"
 ```
 
 **To update:**
 ```bash
-git submodule update --remote filament-blueprint
+git submodule update --remote filament-compass
 ```
 
 ### Method 3: Git Subtree
@@ -69,7 +110,7 @@ Embeds the blueprint into your repo:
 cd /path/to/your/laravel/project
 
 # 1. Add as subtree
-git subtree add --prefix=filament-blueprint https://github.com/aldesrahim/filament-blueprint.git main --squash
+git subtree add --prefix=filament-compass https://github.com/aldesrahim/filament-compass.git main --squash
 
 # 2. Create .ai directory at PROJECT ROOT
 mkdir -p .ai/guidelines/filament
@@ -77,13 +118,13 @@ mkdir -p .ai/skills/filament-development
 
 # 3. Create symlinks (run from PROJECT ROOT)
 # Note: Path is relative to symlink's location, not current directory
-ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
 ```
 
 **To update:**
 ```bash
-git subtree pull --prefix=filament-blueprint https://github.com/aldesrahim/filament-blueprint.git main --squash
+git subtree pull --prefix=filament-compass https://github.com/aldesrahim/filament-compass.git main --squash
 ```
 
 ### Method 4: Manual Download
@@ -92,9 +133,9 @@ git subtree pull --prefix=filament-blueprint https://github.com/aldesrahim/filam
 cd /path/to/your/laravel/project
 
 # 1. Download
-wget https://github.com/aldesrahim/filament-blueprint/archive/refs/heads/main.tar.gz
+wget https://github.com/aldesrahim/filament-compass/archive/refs/heads/main.tar.gz
 tar -xzf main.tar.gz
-mv filament-blueprint-main filament-blueprint
+mv filament-compass-main filament-compass
 rm main.tar.gz
 
 # 2. Create .ai directory at PROJECT ROOT
@@ -103,8 +144,8 @@ mkdir -p .ai/skills/filament-development
 
 # 3. Create symlinks (run from PROJECT ROOT)
 # Note: Path is relative to symlink's location, not current directory
-ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
 ```
 
 ---
@@ -116,13 +157,13 @@ your-project/                         # YOUR PROJECT ROOT
 ├── .ai/                              # Created at project root
 │   ├── guidelines/
 │   │   └── filament/
-│   │       └── core.md → ../../../filament-blueprint/GUIDELINES.md
+│   │       └── core.md → ../../../filament-compass/GUIDELINES.md
 │   └── skills/
 │       └── filament-development/
-│           └── SKILL.md → ../../../filament-blueprint/SKILL.md
+│           └── SKILL.md → ../../../filament-compass/SKILL.md
 │
-├── filament-blueprint/               # Blueprint (submodule/folder)
-│   ├── BLUEPRINT.md
+├── filament-compass/               # Compass (submodule/folder)
+│   ├── COMPASS.md
 │   ├── SKILL.md
 │   ├── GUIDELINES.md
 │   ├── README.md
@@ -139,8 +180,8 @@ your-project/                         # YOUR PROJECT ROOT
 
 **Important:**
 - `.ai/` is at YOUR project root (where `artisan` is)
-- `filament-blueprint/` is also at YOUR project root
-- Symlinks go from `.ai/` to `filament-blueprint/`
+- `filament-compass/` is also at YOUR project root
+- Symlinks go from `.ai/` to `filament-compass/`
 
 ---
 
@@ -150,12 +191,12 @@ From `.ai/guidelines/filament/core.md`:
 - `../` → `.ai/guidelines/`
 - `../../` → `.ai/`
 - `../../../` → project root
-- `../../../filament-blueprint/GUIDELINES.md` ✅
+- `../../../filament-compass/GUIDELINES.md` ✅
 
 ```bash
 # Run these commands from YOUR PROJECT ROOT
-ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
 ```
 
 ---
@@ -181,10 +222,10 @@ Add to your `CLAUDE.md`:
 ```markdown
 # Filament Guidelines
 
-Read filament-blueprint/GUIDELINES.md for essential conventions.
+Read filament-compass/GUIDELINES.md for essential conventions.
 
 ## Skills
-When working with Filament, read filament-blueprint/SKILL.md for detailed patterns.
+When working with Filament, read filament-compass/SKILL.md for detailed patterns.
 ```
 
 ---
@@ -209,15 +250,15 @@ When working with Filament, read filament-blueprint/SKILL.md for detailed patter
 
 ```bash
 # If using Git Submodule
-git submodule update --remote filament-blueprint
+git submodule update --remote filament-compass
 php artisan boost:update
 
 # If using Git Subtree  
-git subtree pull --prefix=filament-blueprint https://github.com/aldesrahim/filament-blueprint.git main --squash
+git subtree pull --prefix=filament-compass https://github.com/aldesrahim/filament-compass.git main --squash
 php artisan boost:update
 
 # If using One-Line/Manual
-curl -s https://raw.githubusercontent.com/aldesrahim/filament-blueprint/main/install.sh | bash
+curl -s https://raw.githubusercontent.com/aldesrahim/filament-compass/main/install.sh | bash
 ```
 
 ---

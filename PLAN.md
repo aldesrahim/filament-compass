@@ -1,11 +1,11 @@
-# Filament Blueprint Update Process
+# Filament Compass Update Process
 
-This document instructs agents on how to update the Filament Blueprint when new versions are released.
+This document instructs agents on how to update the Filament Compass when new versions are released.
 
 ## When to Update
 
 Trigger an update when:
-- Filament packages are updated (check `source/source/filament/composer.json` versions)
+- Filament packages are updated (check `source/filament/composer.json` versions)
 - New components are added to packages
 - Breaking changes appear in upgrade guide
 - New patterns are implemented in demo
@@ -17,7 +17,7 @@ Trigger an update when:
 
 ```bash
 # Read current versions
-cat source/source/filament/composer.json | grep -A 50 '"require"'
+cat source/filament/composer.json | grep -A 50 '"require"'
 ```
 
 Compare with last recorded versions in `reference/versions.md`.
@@ -26,7 +26,7 @@ Compare with last recorded versions in `reference/versions.md`.
 
 ```bash
 # Review breaking changes
-cat source/source/filament/docs/14-upgrade-guide.md
+cat source/filament/docs/14-upgrade-guide.md
 ```
 
 ### 3. Scan for New Components
@@ -35,19 +35,19 @@ For each package, check for new files:
 
 ```bash
 # Forms components
-ls source/source/filament/packages/forms/src/Components/
+ls source/filament/packages/forms/src/Components/
 
 # Tables columns
-ls source/source/filament/packages/tables/src/Columns/
+ls source/filament/packages/tables/src/Columns/
 
 # Infolists entries
-ls source/source/filament/packages/infolists/src/Components/
+ls source/filament/packages/infolists/src/Components/
 
 # Schema components
-ls source/source/filament/packages/schemas/src/Components/
+ls source/filament/packages/schemas/src/Components/
 
 # Actions
-ls source/source/filament/packages/actions/src/
+ls source/filament/packages/actions/src/
 
 # Widgets
 ls source/filament/packages/widgets/src/
@@ -74,7 +74,7 @@ ls source/filament/packages/panels/docs/  # if exists
 
 ```bash
 # Check for new resources, schemas, tables, widgets
-find source/demo/app/Filament -type f -name "*.php" -newer filament-blueprint/PLAN.md
+find source/demo/app/Filament -type f -name "*.php" -newer filament-compass/PLAN.md
 ```
 
 ## Update Checklist

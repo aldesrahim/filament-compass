@@ -1,9 +1,9 @@
-# Publishing Filament Blueprint
+# Publishing Filament Compass
 
 ## Step 1: Create GitHub Repository
 
 Go to https://github.com/new and create a new repository:
-- Name: `filament-blueprint`
+- Name: `filament-compass`
 - Description: `Comprehensive documentation for Filament v5, designed for LLMs and Laravel Boost integration`
 - Public or Private (your choice)
 - **Do NOT** initialize with README
@@ -14,7 +14,7 @@ Go to https://github.com/new and create a new repository:
 # In this directory
 
 # Add remote (replace aldesrahim)
-git remote add origin https://github.com/aldesrahim/filament-blueprint.git
+git remote add origin https://github.com/aldesrahim/filament-compass.git
 
 # Push to GitHub
 git push -u origin main
@@ -43,7 +43,7 @@ git push
 
 ```bash
 cd /path/to/existing/project
-curl -s https://raw.githubusercontent.com/aldesrahim/filament-blueprint/main/install.sh | bash
+curl -s https://raw.githubusercontent.com/aldesrahim/filament-compass/main/install.sh | bash
 ```
 
 ### Option 2: Git Submodule (Recommended for Teams)
@@ -52,24 +52,24 @@ curl -s https://raw.githubusercontent.com/aldesrahim/filament-blueprint/main/ins
 cd /path/to/existing/project
 
 # 1. Add as submodule
-git submodule add https://github.com/aldesrahim/filament-blueprint.git filament-blueprint
+git submodule add https://github.com/aldesrahim/filament-compass.git filament-compass
 
 # 2. Create .ai/ at PROJECT ROOT
 mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
 
 # 3. Create symlinks (from project root)
-ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
 
 # 4. Commit
-git add .gitmodules filament-blueprint .ai/
-git commit -m "Add Filament Blueprint"
+git add .gitmodules filament-compass .ai/
+git commit -m "Add Filament Compass"
 ```
 
 **To update:**
 ```bash
-git submodule update --remote filament-blueprint
+git submodule update --remote filament-compass
 ```
 
 ---
@@ -81,13 +81,13 @@ existing-project/                      # USER'S PROJECT ROOT
 ├── .ai/                               # Created at project root
 │   ├── guidelines/
 │   │   └── filament/
-│   │       └── core.md → ../../../filament-blueprint/GUIDELINES.md
+│   │       └── core.md → ../../../filament-compass/GUIDELINES.md
 │   └── skills/
 │       └── filament-development/
-│           └── SKILL.md → ../../../filament-blueprint/SKILL.md
+│           └── SKILL.md → ../../../filament-compass/SKILL.md
 │
-├── filament-blueprint/                # Submodule or downloaded folder
-│   ├── BLUEPRINT.md
+├── filament-compass/                # Submodule or downloaded folder
+│   ├── COMPASS.md
 │   ├── SKILL.md
 │   ├── GUIDELINES.md
 │   ├── architecture/
@@ -117,15 +117,15 @@ cd /path/to/existing/project   # Project root (where artisan is)
 mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
 
-# Create symlinks from .ai/ to filament-blueprint/
-ln -s ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+# Create symlinks from .ai/ to filament-compass/
+ln -s ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
 ```
 
 **NOT:**
 ```bash
-# ❌ Don't run from inside filament-blueprint/
-cd filament-blueprint
+# ❌ Don't run from inside filament-compass/
+cd filament-compass
 
 # ❌ Don't run from inside .ai/
 cd .ai/guidelines/filament
@@ -138,8 +138,8 @@ cd .ai/guidelines/filament
 When users clone/add this repo, they get:
 
 ```
-filament-blueprint/              # The repo they clone
-├── BLUEPRINT.md
+filament-compass/              # The repo they clone
+├── COMPASS.md
 ├── SKILL.md
 ├── GUIDELINES.md
 ├── README.md

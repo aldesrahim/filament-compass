@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Filament Blueprint - Laravel Boost Integration Setup
+# Filament Compass - Laravel Boost Integration Setup
 # Run this script from YOUR PROJECT ROOT (where artisan is located)
 # 
 # Usage:
@@ -10,21 +10,21 @@
 set -e
 
 echo "╔════════════════════════════════════════════════════════════╗"
-echo "║     Filament Blueprint - Laravel Boost Setup                ║"
+echo "║     Filament Compass - Laravel Boost Setup                ║"
 echo "╚════════════════════════════════════════════════════════════╝"
 echo ""
 
-# Check if we're in a project root (looking for filament-blueprint folder)
-if [ ! -d "filament-blueprint" ]; then
-    echo "❌ Error: filament-blueprint/ directory not found."
+# Check if we're in a project root (looking for filament-compass folder)
+if [ ! -d "filament-compass" ]; then
+    echo "❌ Error: filament-compass/ directory not found."
     echo ""
-    echo "Please ensure filament-blueprint/ exists in your project root."
+    echo "Please ensure filament-compass/ exists in your project root."
     echo "You can install it using:"
-    echo "  git submodule add https://github.com/aldesrahim/filament-blueprint.git filament-blueprint"
+    echo "  git submodule add https://github.com/aldesrahim/filament-compass.git filament-compass"
     exit 1
 fi
 
-echo "✓ Found filament-blueprint/ directory"
+echo "✓ Found filament-compass/ directory"
 echo ""
 
 # Create .ai directories
@@ -33,12 +33,12 @@ mkdir -p .ai/guidelines/filament
 mkdir -p .ai/skills/filament-development
 
 # Create symlinks
-ln -sf ../../../filament-blueprint/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -sf ../../../filament-blueprint/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -sf ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
+ln -sf ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
 
 echo "✓ Created symlinks:"
-echo "  .ai/guidelines/filament/core.md → filament-blueprint/GUIDELINES.md"
-echo "  .ai/skills/filament-development/SKILL.md → filament-blueprint/SKILL.md"
+echo "  .ai/guidelines/filament/core.md → filament-compass/GUIDELINES.md"
+echo "  .ai/skills/filament-development/SKILL.md → filament-compass/SKILL.md"
 echo ""
 
 # Verify symlinks
@@ -69,6 +69,6 @@ elif [ -f "artisan" ]; then
 else
     echo "ℹ️  Not a Laravel project."
     echo ""
-    echo "You can still use the blueprint by reading:"
-    echo "  filament-blueprint/BLUEPRINT.md"
+    echo "You can still use the compass by reading:"
+    echo "  filament-compass/COMPASS.md"
 fi
