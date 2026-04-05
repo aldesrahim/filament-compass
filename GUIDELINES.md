@@ -111,6 +111,17 @@ public static function table(Table $table): Table
 }
 ```
 
+## Verification
+
+After writing or modifying any Filament code, check if FilaCheck is installed and run it:
+
+```bash
+# Check if installed
+composer show laraveldaily/filacheck 2>/dev/null && vendor/bin/filacheck --dirty
+```
+
+If installed, fix any reported issues before considering the task complete. If not installed, skip this step.
+
 ## Skills Activation
 
 This project has Filament-specific skills available. Activate the relevant skill when working with Filament:
