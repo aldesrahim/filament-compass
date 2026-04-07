@@ -99,14 +99,21 @@ public static function canDelete(Model $record): bool
 
 ## Action Authorization
 
-### With Policy
+### With Policy Ability
 
 ```php
 DeleteAction::make()
     ->authorize('delete', $record)
 ```
 
-### With Gate
+### Require Any Ability (`OR` logic)
+
+```php
+Action::make('manage')
+    ->authorizeAny(['edit', 'delete'])
+```
+
+### With Gate (Closure)
 
 ```php
 Action::make('publish')
@@ -118,6 +125,33 @@ Action::make('publish')
 ```php
 DeleteAction::make()
     ->visible(fn (Product $record) => auth()->user()->can('delete', $record))
+```
+
+### Show Denial UX (instead of hiding)
+
+```php
+// Show a tooltip with the denial message
+Action::make('approve')
+    ->authorize('approve')
+    ->authorizationTooltip()
+
+// Show a notification when clicked while unauthorized
+Action::make('export')
+    ->authorize('export')
+    ->authorizationNotification()
+
+// Custom denial message
+Action::make('delete')
+    ->authorize('delete')
+    ->authorizationMessage('Contact your administrator to delete records.')
+```
+
+### Per-Record Authorization on Bulk Actions
+
+```php
+BulkAction::make('approve')
+    ->authorizeIndividualRecords('approve')
+    ->action(fn (Collection $records) => $records->each->approve())
 ```
 
 ## Navigation Authorization
@@ -134,8 +168,14 @@ public static function shouldRegisterNavigation(): bool
 ## Bulk Action Authorization
 
 ```php
+// Authorize at the action level (checks once for the whole bulk operation)
 DeleteBulkAction::make()
     ->authorize('delete', Product::class)
+
+// Authorize per individual record (filters out unauthorized records)
+BulkAction::make('approve')
+    ->authorizeIndividualRecords('approve')
+    ->action(fn (Collection $records) => $records->each->approve())
 ```
 
 ## Tenant Authorization

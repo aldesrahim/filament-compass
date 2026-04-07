@@ -250,6 +250,21 @@ public static function canViewAny(): bool
 }
 ```
 
+### Skip Authorization (dev/testing)
+
+```php
+// Disable all policy checks for this resource
+ProductResource::skipAuthorization();
+```
+
+### Disable Policy Existence Check
+
+By default, Filament checks that a policy exists before calling it. Disable to allow missing policies to pass silently:
+
+```php
+ProductResource::checkPolicyExistence(false);
+```
+
 ## Artisan Commands
 
 ```bash

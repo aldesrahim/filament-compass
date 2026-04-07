@@ -291,6 +291,27 @@ BulkAction::make('update_status')
     })
 ```
 
+## SelectAction
+
+Inline select dropdown rendered as an action.
+
+```php
+use Filament\Actions\SelectAction;
+
+SelectAction::make('status')
+    ->options(OrderStatus::class)
+    ->action(fn (array $data, Order $record) => $record->update(['status' => $data['status']]))
+```
+
+### With Placeholder
+
+```php
+SelectAction::make('assign_to')
+    ->options(User::pluck('name', 'id'))
+    ->placeholder('Assign to...')
+    ->action(fn (array $data, Task $record) => $record->update(['user_id' => $data['assign_to']]))
+```
+
 ## Button Variants
 
 ```php
@@ -308,6 +329,62 @@ Action::make('edit')->outlined()
 
 ```php
 Action::make('edit')->size('xs')  // 'xs', 'sm', 'md', 'lg'
+```
+
+## Action Authorization
+
+### Require All Abilities
+
+```php
+Action::make('publish')
+    ->authorize('publish', Product::class)
+```
+
+### Require Any Ability
+
+```php
+Action::make('manage')
+    ->authorizeAny(['edit', 'delete'], $record)
+```
+
+### Custom Message When Denied
+
+```php
+Action::make('approve')
+    ->authorize('approve')
+    ->authorizationMessage('You do not have permission to approve records.')
+```
+
+### Show Tooltip When Unauthorized (Instead of Hiding)
+
+```php
+Action::make('delete')
+    ->authorize('delete')
+    ->authorizationTooltip()  // Shows the denial message as tooltip
+```
+
+### Show Notification When Unauthorized (Instead of Hiding)
+
+```php
+Action::make('export')
+    ->authorize('export')
+    ->authorizationNotification()  // Shows notification on click
+```
+
+### Per-Record Authorization in Bulk Actions
+
+```php
+BulkAction::make('approve')
+    ->authorizeIndividualRecords('approve')
+    ->action(fn (Collection $records) => $records->each->approve())
+```
+
+Or with a closure:
+
+```php
+BulkAction::make('delete')
+    ->authorizeIndividualRecords(fn (Model $record) => auth()->user()->can('delete', $record))
+    ->action(fn (Collection $records) => $records->each->delete())
 ```
 
 ## Related

@@ -37,6 +37,8 @@ use Filament\Forms\Components\{Field};
 | `Placeholder` | Display-only text | `Filament\Forms\Components\Placeholder` |
 | `Select` (Modal) | Modal table select | `Filament\Forms\Components\ModalTableSelect` |
 | `Select` (Table) | Embedded table select | `Filament\Forms\Components\TableSelect` |
+| `OneTimeCodeInput` | OTP code input | `Filament\Forms\Components\OneTimeCodeInput` |
+| `LivewireField` | Embed Livewire component | `Filament\Forms\Components\LivewireField` |
 
 ## TextInput
 
@@ -62,6 +64,17 @@ TextInput::make('password')->password()    // Password
 TextInput::make('phone')->tel()            // Phone
 TextInput::make('website')->url()          // URL
 TextInput::make('hex')->type('color')      // Custom type
+```
+
+### Input Mask
+
+```php
+TextInput::make('phone')
+    ->tel()
+    ->mask('(999) 999-9999')
+
+TextInput::make('zip_code')
+    ->mask('99999')
 ```
 
 ### Numeric Methods
@@ -481,6 +494,54 @@ Slider::make('rating')
     ->step(0.5)
     ->marks()
     ->range(['min' => [1, '1'], 'max' => [5, '5']])
+```
+
+## ModalTableSelect
+
+Select a record via a modal with a table.
+
+```php
+use Filament\Forms\Components\ModalTableSelect;
+
+ModalTableSelect::make('customer_id')
+    ->relationship('customer', 'name')
+    ->tableConfiguration(CustomersTable::class)
+    ->searchable()
+```
+
+### Multiple Modal Select
+
+```php
+ModalTableSelect::make('product_ids')
+    ->relationship('products', 'name')
+    ->multiple()
+    ->tableConfiguration(ProductsTable::class)
+```
+
+## OneTimeCodeInput
+
+OTP / verification code input.
+
+```php
+use Filament\Forms\Components\OneTimeCodeInput;
+
+OneTimeCodeInput::make('code')
+    ->label('Verification Code')
+    ->length(6)  // Default: 6
+    ->required()
+```
+
+## LivewireField
+
+Embed a Livewire component inside a form field.
+
+```php
+use Filament\Forms\Components\LivewireField;
+
+LivewireField::make('custom_value')
+    ->component(MyCustomField::class)
+    ->data(['extraProp' => 'value'])
+    ->lazy()
 ```
 
 ## Hidden

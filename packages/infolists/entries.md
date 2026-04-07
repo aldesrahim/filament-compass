@@ -231,6 +231,12 @@ class ProjectInfolist
 | `hidden()` | Hidden condition | `->hidden()` |
 | `placeholder()` | Empty placeholder | `->placeholder('N/A')` |
 | `tooltip()` | Tooltip text | `->tooltip('Help text')` |
+| `hint()` | Hint text near label | `->hint('Optional note')` |
+| `hintColor()` | Hint text color | `->hintColor('warning')` |
+| `hintIcon()` | Icon next to hint | `->hintIcon('heroicon-o-information-circle')` |
+| `hintIconTooltip()` | Tooltip on hint icon | `->hintIconTooltip('More info')` |
+| `hintAction()` | Action button next to label | `->hintAction(Action::make('help'))` |
+| `hintActions()` | Multiple action buttons | `->hintActions([...])` |
 
 ## Related
 
