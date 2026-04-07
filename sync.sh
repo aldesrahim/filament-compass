@@ -14,7 +14,6 @@ mkdir -p "$DOCS_DEST" \
 echo "Syncing doc files..."
 rsync -av --delete \
     COMPASS.md \
-    PLAN.md \
     packages/ \
     patterns/ \
     testing/ \
