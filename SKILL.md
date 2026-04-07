@@ -21,9 +21,11 @@ Activate this skill when:
 
 ## Skill Content Location
 
+> **Important**: All paths below are relative to the **project root** (where `filament-compass/` is installed as a submodule or directory). Do NOT resolve them relative to this skill file's location.
+
 This skill reads from:
 ```
-filament-compass/
+<project-root>/filament-compass/
 ├── COMPASS.md           # Main entry - read first
 ├── packages/              # Component catalogs
 ├── patterns/              # Implementation patterns
@@ -44,50 +46,50 @@ Start by reading `filament-compass/COMPASS.md` for:
 
 ### Step 2: Consult Package Documentation
 
-Based on the task, read from `packages/`:
+Based on the task, read from `filament-compass/packages/`:
 
 | Task | Read |
 |------|------|
-| Create Resource | `packages/panels/resources.md` |
-| Build Form | `packages/forms/components.md` |
-| Configure Table | `packages/tables/columns.md`, `packages/tables/filters.md` |
-| Add Actions | `packages/actions/overview.md`, `packages/actions/catalog.md` |
-| Layout Components | `packages/schemas/layout.md` |
-| Read-only Display | `packages/infolists/entries.md` |
-| Notifications | `packages/notifications/overview.md` |
+| Create Resource | `filament-compass/packages/panels/resources.md` |
+| Build Form | `filament-compass/packages/forms/components.md` |
+| Configure Table | `filament-compass/packages/tables/columns.md`, `filament-compass/packages/tables/filters.md` |
+| Add Actions | `filament-compass/packages/actions/overview.md`, `filament-compass/packages/actions/catalog.md` |
+| Layout Components | `filament-compass/packages/schemas/layout.md` |
+| Read-only Display | `filament-compass/packages/infolists/entries.md` |
+| Notifications | `filament-compass/packages/notifications/overview.md` |
 
 ### Step 3: Apply Patterns
 
-Read from `patterns/` for implementation patterns:
+Read from `filament-compass/patterns/` for implementation patterns:
 
 | Pattern | File |
 |---------|------|
-| Separated concerns | `patterns/separated-concerns.md` |
-| Conditional fields | `patterns/conditional-fields.md` |
-| State transitions | `patterns/state-transitions.md` |
-| Relationships | `patterns/relationships.md` |
-| Import/Export | `patterns/imports-exports.md` |
-| Authorization | `patterns/authorization.md` |
+| Separated concerns | `filament-compass/patterns/separated-concerns.md` |
+| Conditional fields | `filament-compass/patterns/conditional-fields.md` |
+| State transitions | `filament-compass/patterns/state-transitions.md` |
+| Relationships | `filament-compass/patterns/relationships.md` |
+| Import/Export | `filament-compass/patterns/imports-exports.md` |
+| Authorization | `filament-compass/patterns/authorization.md` |
 
 ### Step 4: Follow Recipes
 
-For step-by-step implementation, read from `recipes/`:
+For step-by-step implementation, read from `filament-compass/recipes/`:
 
-- `quick-start.md` - Minimal setup
-- `crud-resource.md` - Complete CRUD
-- `master-detail.md` - With RelationManagers
-- `wizard-form.md` - Multi-step forms
-- `dashboard.md` - Custom dashboard
-- `custom-page.md` - Custom pages
+- `filament-compass/recipes/quick-start.md` - Minimal setup
+- `filament-compass/recipes/crud-resource.md` - Complete CRUD
+- `filament-compass/recipes/master-detail.md` - With RelationManagers
+- `filament-compass/recipes/wizard-form.md` - Multi-step forms
+- `filament-compass/recipes/dashboard.md` - Custom dashboard
+- `filament-compass/recipes/custom-page.md` - Custom pages
 
 ### Step 5: Reference Tables
 
-Use `reference/` for quick lookup:
+Use `filament-compass/reference/` for quick lookup:
 
-- `namespaces.md` - Import statements
-- `artisan-commands.md` - CLI commands
-- `common-mistakes.md` - Pitfalls to avoid
-- `breaking-changes.md` - v5 migration
+- `filament-compass/reference/namespaces.md` - Import statements
+- `filament-compass/reference/artisan-commands.md` - CLI commands
+- `filament-compass/reference/common-mistakes.md` - Pitfalls to avoid
+- `filament-compass/reference/breaking-changes.md` - v5 migration
 
 ## Planning Mode
 
@@ -105,7 +107,7 @@ Then produce:
 - Action definitions
 - Authorization rules
 
-Read `COMPASS.md` section "Planning a Filament Application" for the complete process.
+Read `filament-compass/COMPASS.md` section "Planning a Filament Application" for the complete process.
 
 ## Quick Code Patterns
 
@@ -171,7 +173,7 @@ TextInput::make('company_name')
 
 ## Testing Patterns
 
-Read `testing/overview.md`, `testing/resources.md`, `testing/actions.md`, `testing/tables.md` for:
+Read `filament-compass/testing/overview.md`, `filament-compass/testing/resources.md`, `filament-compass/testing/actions.md`, `filament-compass/testing/tables.md` for:
 
 ```php
 // List page test
