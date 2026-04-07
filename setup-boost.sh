@@ -30,19 +30,19 @@ echo ""
 # Create .ai directories
 echo "Creating .ai/ directory structure..."
 mkdir -p .ai/guidelines/filament
-mkdir -p .ai/skills/filament-development
+mkdir -p .ai/skills/filament-compass
 
 # Create symlinks
 ln -sf ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -sf ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -sf ../../../filament-compass/SKILL.md .ai/skills/filament-compass/SKILL.md
 
 echo "✓ Created symlinks:"
 echo "  .ai/guidelines/filament/core.md → filament-compass/GUIDELINES.md"
-echo "  .ai/skills/filament-development/SKILL.md → filament-compass/SKILL.md"
+echo "  .ai/skills/filament-compass/SKILL.md → filament-compass/SKILL.md"
 echo ""
 
 # Verify symlinks
-if [ -f ".ai/guidelines/filament/core.md" ] && [ -f ".ai/skills/filament-development/SKILL.md" ]; then
+if [ -f ".ai/guidelines/filament/core.md" ] && [ -f ".ai/skills/filament-compass/SKILL.md" ]; then
     echo "✓ Symlinks verified and working"
 else
     echo "⚠️  Warning: Symlinks may not be working correctly"

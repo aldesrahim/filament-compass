@@ -56,11 +56,11 @@ git submodule add https://github.com/aldesrahim/filament-compass.git filament-co
 
 # 2. Create .ai/ at PROJECT ROOT
 mkdir -p .ai/guidelines/filament
-mkdir -p .ai/skills/filament-development
+mkdir -p .ai/skills/filament-compass
 
 # 3. Create symlinks (from project root)
 ln -s ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-compass/SKILL.md
 
 # 4. Commit
 git add .gitmodules filament-compass .ai/
@@ -83,7 +83,7 @@ existing-project/                      # USER'S PROJECT ROOT
 │   │   └── filament/
 │   │       └── core.md → ../../../filament-compass/GUIDELINES.md
 │   └── skills/
-│       └── filament-development/
+│       └── filament-compass/
 │           └── SKILL.md → ../../../filament-compass/SKILL.md
 │
 ├── filament-compass/                # Submodule or downloaded folder
@@ -115,11 +115,11 @@ cd /path/to/existing/project   # Project root (where artisan is)
 
 # Create .ai/
 mkdir -p .ai/guidelines/filament
-mkdir -p .ai/skills/filament-development
+mkdir -p .ai/skills/filament-compass
 
 # Create symlinks from .ai/ to filament-compass/
 ln -s ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-compass/SKILL.md
 ```
 
 **NOT:**

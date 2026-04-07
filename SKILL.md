@@ -1,5 +1,5 @@
 ---
-name: filament-development
+name: filament-compass
 description: Build and work with Filament v5 admin panels, resources, forms, tables, actions, widgets, and Livewire-based CRUD interfaces.
 ---
 

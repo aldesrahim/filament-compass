@@ -85,12 +85,12 @@ git submodule add https://github.com/aldesrahim/filament-compass.git filament-co
 
 # 2. Create .ai directory at PROJECT ROOT (not inside filament-compass/)
 mkdir -p .ai/guidelines/filament
-mkdir -p .ai/skills/filament-development
+mkdir -p .ai/skills/filament-compass
 
 # 3. Create symlinks (run from PROJECT ROOT)
 # Note: Path is relative to symlink's location, not current directory
 ln -s ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-compass/SKILL.md
 
 # 4. Commit
 git add .gitmodules filament-compass .ai/
@@ -114,12 +114,12 @@ git subtree add --prefix=filament-compass https://github.com/aldesrahim/filament
 
 # 2. Create .ai directory at PROJECT ROOT
 mkdir -p .ai/guidelines/filament
-mkdir -p .ai/skills/filament-development
+mkdir -p .ai/skills/filament-compass
 
 # 3. Create symlinks (run from PROJECT ROOT)
 # Note: Path is relative to symlink's location, not current directory
 ln -s ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-compass/SKILL.md
 ```
 
 **To update:**
@@ -140,12 +140,12 @@ rm main.tar.gz
 
 # 2. Create .ai directory at PROJECT ROOT
 mkdir -p .ai/guidelines/filament
-mkdir -p .ai/skills/filament-development
+mkdir -p .ai/skills/filament-compass
 
 # 3. Create symlinks (run from PROJECT ROOT)
 # Note: Path is relative to symlink's location, not current directory
 ln -s ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-compass/SKILL.md
 ```
 
 ---
@@ -159,7 +159,7 @@ your-project/                         # YOUR PROJECT ROOT
 │   │   └── filament/
 │   │       └── core.md → ../../../filament-compass/GUIDELINES.md
 │   └── skills/
-│       └── filament-development/
+│       └── filament-compass/
 │           └── SKILL.md → ../../../filament-compass/SKILL.md
 │
 ├── filament-compass/               # Compass (submodule/folder)
@@ -196,7 +196,7 @@ From `.ai/guidelines/filament/core.md`:
 ```bash
 # Run these commands from YOUR PROJECT ROOT
 ln -s ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -s ../../../filament-compass/SKILL.md .ai/skills/filament-compass/SKILL.md
 ```
 
 ---

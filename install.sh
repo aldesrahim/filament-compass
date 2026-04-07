@@ -53,15 +53,15 @@ echo ""
 # Create .ai directories at PROJECT ROOT
 echo "Creating .ai/ directory at project root..."
 mkdir -p .ai/guidelines/filament
-mkdir -p .ai/skills/filament-development
+mkdir -p .ai/skills/filament-compass
 
 # Create symlinks from .ai/ to filament-compass/
 ln -sf ../../../filament-compass/GUIDELINES.md .ai/guidelines/filament/core.md
-ln -sf ../../../filament-compass/SKILL.md .ai/skills/filament-development/SKILL.md
+ln -sf ../../../filament-compass/SKILL.md .ai/skills/filament-compass/SKILL.md
 
 echo "✓ Created symlinks in .ai/"
 echo "  .ai/guidelines/filament/core.md → filament-compass/GUIDELINES.md"
-echo "  .ai/skills/filament-development/SKILL.md → filament-compass/SKILL.md"
+echo "  .ai/skills/filament-compass/SKILL.md → filament-compass/SKILL.md"
 echo ""
 
 # Summary
@@ -73,7 +73,7 @@ echo "Directory structure:"
 echo "  $TARGET_DIR/"
 echo "  ├── .ai/                          (Laravel Boost)"
 echo "  │   ├── guidelines/filament/"
-echo "  │   └── skills/filament-development/"
+echo "  │   └── skills/filament-compass/"
 echo "  └── filament-compass/           (Documentation)"
 echo ""
 
