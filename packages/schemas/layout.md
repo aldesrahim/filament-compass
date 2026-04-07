@@ -310,20 +310,33 @@ FusedGroup::make()
 
 ## Utilities
 
+> For the full closure injection reference (all available parameters in all contexts), see [../../reference/closures.md](../../reference/closures.md).
+
 ### Get
 
-Read other field values.
+Read other field values. Paths are relative to current container (Repeater item, etc.).
 
 ```php
 use Filament\Schemas\Components\Utilities\Get;
 
 TextInput::make('company_name')
     ->visible(fn (Get $get): bool => $get('type') === 'business')
+
+// Nested: read sibling field inside same Repeater item
+Repeater::make('lines')->schema([
+    TextInput::make('qty')
+        ->afterStateUpdated(fn (Get $get, Set $set) =>
+            $set('total', $get('qty') * $get('unit_price'))
+        ),
+])
+
+// Absolute path (ignore container prefix)
+->visible(fn (Get $get) => $get('discount', isAbsolute: true) > 0)
 ```
 
 ### Set
 
-Set other field values.
+Write other field values. Triggers `afterStateUpdated` if `shouldCallUpdatedHooks: true`.
 
 ```php
 use Filament\Schemas\Components\Utilities\Set;
@@ -331,6 +344,21 @@ use Filament\Schemas\Components\Utilities\Set;
 TextInput::make('name')
     ->live(onBlur: true)
     ->afterStateUpdated(fn (Set $set, $state) => $set('slug', Str::slug($state)))
+
+// With hooks
+->afterStateUpdated(fn (Set $set, $state) =>
+    $set('slug', Str::slug($state), shouldCallUpdatedHooks: true)
+)
+```
+
+### live()
+
+Controls when Livewire re-renders (and when closure values update):
+
+```php
+Select::make('type')->live()                  // Every change
+TextInput::make('name')->live(onBlur: true)   // On focus leave
+Select::make('country')->live(debounce: 500)  // 500ms after last change
 ```
 
 ## EmptyState

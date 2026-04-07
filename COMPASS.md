@@ -170,6 +170,7 @@ Key patterns:
 - **Chained methods** - Configuration methods return `static`
 - **Closure support** - Most methods accept `Closure` for dynamic values
 - **Get/Set utilities** - Use `Get $get` / `Set $set` for cross-field logic
+- **Closure injection** - Declare any of `$state`, `$record`, `$operation`, `$get`, `$set`, `$livewire`, `$rowLoop` by name — Filament injects them automatically. See [reference/closures.md](reference/closures.md).
 
 ## Real Example: Complete Resource
 
@@ -350,5 +351,6 @@ Generate:
 ### Reference
 - [artisan-commands.md](reference/artisan-commands.md) - All commands
 - [namespaces.md](reference/namespaces.md) - Namespace quick reference
+- [closures.md](reference/closures.md) - Closure injection parameters ($state, $get, $set, $record, $operation, $rowLoop, etc.)
 - [common-mistakes.md](reference/common-mistakes.md) - Pitfalls
 - [breaking-changes.md](reference/breaking-changes.md) - v5 changes
