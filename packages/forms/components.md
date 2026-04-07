@@ -39,6 +39,8 @@ use Filament\Forms\Components\{Field};
 | `Select` (Table) | Embedded table select | `Filament\Forms\Components\TableSelect` |
 | `OneTimeCodeInput` | OTP code input | `Filament\Forms\Components\OneTimeCodeInput` |
 | `LivewireField` | Embed Livewire component | `Filament\Forms\Components\LivewireField` |
+| `MorphToSelect` | Polymorphic relationship select | `Filament\Forms\Components\MorphToSelect` |
+| `ViewField` | Custom view-based field | `Filament\Forms\Components\ViewField` |
 
 ## TextInput
 
@@ -380,6 +382,8 @@ Repeater::make('items')
     ->orderColumn('sort_order')
 ```
 
+> **Deprecated**: `RelationshipRepeater` class is deprecated. Use `Repeater::make()->relationship()` instead.
+
 ## Builder
 
 Dynamic block-based content.
@@ -529,6 +533,50 @@ OneTimeCodeInput::make('code')
     ->label('Verification Code')
     ->length(6)  // Default: 6
     ->required()
+```
+
+## MorphToSelect
+
+Polymorphic relationship field (type + key select pair).
+
+```php
+use Filament\Forms\Components\MorphToSelect;
+use Filament\Forms\Components\MorphToSelect\Type;
+
+MorphToSelect::make('commentable')
+    ->types([
+        Type::make(Post::class)
+            ->titleAttribute('title'),
+        Type::make(Video::class)
+            ->titleAttribute('title'),
+    ])
+    ->searchable()
+    ->preload()
+    ->required()
+```
+
+### Toggle Buttons Variant
+
+```php
+MorphToSelect::make('imageable')
+    ->types([
+        Type::make(User::class)->titleAttribute('name'),
+        Type::make(Product::class)->titleAttribute('name'),
+    ])
+    ->typeSelectToggleButtons()  // Render type selector as toggle buttons
+```
+
+## ViewField
+
+Custom view-based field. Extend `ViewField` for fully custom implementations:
+
+```php
+use Filament\Forms\Components\ViewField;
+
+class SignaturePad extends ViewField
+{
+    protected string $view = 'forms.components.signature-pad';
+}
 ```
 
 ## LivewireField

@@ -28,6 +28,9 @@ use Filament\Schemas\Components\{Component};
 | `Livewire` | Livewire component | `Filament\Schemas\Components\Livewire` |
 | `Text` | Text display | `Filament\Schemas\Components\Text` |
 | `UnorderedList` | Bullet list | `Filament\Schemas\Components\UnorderedList` |
+| `EmptyState` | Empty state placeholder | `Filament\Schemas\Components\EmptyState` |
+| `RenderHook` | Filament render hook | `Filament\Schemas\Components\RenderHook` |
+| `View` | Custom view component | `Filament\Schemas\Components\View` |
 
 ## Grid
 
@@ -328,6 +331,42 @@ use Filament\Schemas\Components\Utilities\Set;
 TextInput::make('name')
     ->live(onBlur: true)
     ->afterStateUpdated(fn (Set $set, $state) => $set('slug', Str::slug($state)))
+```
+
+## EmptyState
+
+Empty state placeholder (no records found, placeholder content).
+
+```php
+use Filament\Schemas\Components\EmptyState;
+
+EmptyState::make('No results found')
+    ->description('Try adjusting your search or filters.')
+    ->icon('heroicon-o-magnifying-glass')
+    ->actions([
+        Action::make('reset')->label('Reset filters')->action(fn () => ...),
+    ])
+```
+
+## RenderHook
+
+Render a Filament render hook inside a schema:
+
+```php
+use Filament\Schemas\Components\RenderHook;
+
+RenderHook::make('panels::body.start')
+RenderHook::make('panels::body.start', scopes: SomeResource::class)
+```
+
+## View
+
+Custom view-based component:
+
+```php
+use Filament\Schemas\Components\View;
+
+View::make('components.custom-block')
 ```
 
 ## Related

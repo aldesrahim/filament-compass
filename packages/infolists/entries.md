@@ -19,6 +19,7 @@ use Filament\Infolists\Components\{Entry};
 | `KeyValueEntry` | Key-value pairs | `Filament\Infolists\Components\KeyValueEntry` |
 | `RepeatableEntry` | Repeating entries | `Filament\Infolists\Components\RepeatableEntry` |
 | `CodeEntry` | Code display | `Filament\Infolists\Components\CodeEntry` |
+| `ViewEntry` | Custom view-based entry | `Filament\Infolists\Components\ViewEntry` |
 
 ## TextEntry
 
@@ -189,6 +190,17 @@ use Filament\Infolists\Components\CodeEntry;
 CodeEntry::make('snippet')
     ->language('php')
     ->copyable()
+```
+
+## ViewEntry
+
+Custom view-based entry for fully custom display logic:
+
+```php
+use Filament\Infolists\Components\ViewEntry;
+
+ViewEntry::make('signature')
+    ->view('infolists.entries.signature')
 ```
 
 ## Real Example

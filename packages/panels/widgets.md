@@ -135,18 +135,22 @@ class SalesChart extends ChartWidget
 | `'scatter'` | Scatter chart |
 | `'bubble'` | Bubble chart |
 
-### Pre-built Chart Widgets
+### Chart Types
 
-```php
-use Filament\Widgets\LineChartWidget;    // Line chart
-use Filament\Widgets\BarChartWidget;     // Bar chart
-use Filament\Widgets\PieChartWidget;     // Pie chart
-use Filament\Widgets\DoughnutChartWidget; // Doughnut chart
-use Filament\Widgets\RadarChartWidget;   // Radar chart
-use Filament\Widgets\PolarAreaChartWidget; // Polar area
-use Filament\Widgets\ScatterChartWidget; // Scatter chart
-use Filament\Widgets\BubbleChartWidget;  // Bubble chart
-```
+All chart types are configured via `getType()` in `ChartWidget`:
+
+| `getType()` return | Chart |
+|-------------------|-------|
+| `'line'` | Line chart |
+| `'bar'` | Bar chart |
+| `'pie'` | Pie chart |
+| `'doughnut'` | Doughnut chart |
+| `'radar'` | Radar chart |
+| `'polarArea'` | Polar area chart |
+| `'scatter'` | Scatter chart |
+| `'bubble'` | Bubble chart |
+
+> **Deprecated**: `LineChartWidget`, `BarChartWidget`, `PieChartWidget`, etc. are all deprecated. Extend `ChartWidget` and define `getType()` instead.
 
 ### Real Example
 
@@ -238,34 +242,32 @@ class SalesChart extends ChartWidget
 
 ## TableWidget
 
-Display a table as a widget.
+Display a table as a widget. Override the `table()` method:
 
 ```php
 use Filament\Widgets\TableWidget;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
 
 class RecentOrders extends TableWidget
 {
     protected int | string | array $columnSpan = 'full';
-    
-    protected function getTableQuery(): Builder
+
+    public function table(Table $table): Table
     {
-        return Order::query()->latest()->limit(10);
-    }
-    
-    protected function getTableColumns(): array
-    {
-        return [
-            TextColumn::make('id'),
-            TextColumn::make('customer.name'),
-            TextColumn::make('total'),
-            TextColumn::make('status'),
-        ];
+        return $table
+            ->query(Order::query()->latest()->limit(10))
+            ->columns([
+                TextColumn::make('id'),
+                TextColumn::make('customer.name'),
+                TextColumn::make('total'),
+                TextColumn::make('status'),
+            ]);
     }
 }
 ```
+
+> **Deprecated**: `getTableQuery()`, `getTableColumns()`, and the `$heading` property on `TableWidget` are deprecated. Use `table()` to configure everything.
 
 ## Widget Configuration
 

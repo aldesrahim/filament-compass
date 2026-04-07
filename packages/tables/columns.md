@@ -23,6 +23,10 @@ use Filament\Tables\Columns\{Column};
 | `TextInputColumn` | Inline text input | `Filament\Tables\Columns\TextInputColumn` |
 | `ToggleColumn` | Inline toggle | `Filament\Tables\Columns\ToggleColumn` |
 | `TagsColumn` | Tags display | `Filament\Tables\Columns\TagsColumn` |
+| `ViewColumn` | Custom view column | `Filament\Tables\Columns\ViewColumn` |
+| `Layout\Split` | Responsive side-by-side | `Filament\Tables\Columns\Layout\Split` |
+| `Layout\Stack` | Vertical group | `Filament\Tables\Columns\Layout\Stack` |
+| `Layout\Panel` | Collapsible extra content | `Filament\Tables\Columns\Layout\Panel` |
 
 ## TextColumn
 
@@ -344,6 +348,47 @@ TagsColumn::make('tags')
 | `default()` | Default value | `->default('Unknown')` |
 | `extraAttributes()` | HTML attributes | `->extraAttributes(['class' => 'font-bold'])` |
 | `action()` | Click action | `->action(fn ($record) => ...)` |
+
+## ViewColumn
+
+Custom view-based column for fully custom display:
+
+```php
+use Filament\Tables\Columns\ViewColumn;
+
+ViewColumn::make('status_badge')
+    ->view('tables.columns.status-badge')
+```
+
+## Table Layout Columns
+
+For card/panel style table layouts (replaces row layout):
+
+```php
+use Filament\Tables\Columns\Layout\Split;
+use Filament\Tables\Columns\Layout\Stack;
+use Filament\Tables\Columns\Layout\Panel;
+
+// Split: horizontal side-by-side (responsive)
+Split::make([
+    ImageColumn::make('avatar')->circular(),
+    Stack::make([
+        TextColumn::make('name')->weight(FontWeight::Bold),
+        TextColumn::make('email')->color('gray'),
+    ]),
+    TextColumn::make('role')->badge()->grow(false),
+])
+
+// Panel: collapsible additional content
+Panel::make([
+    Stack::make([
+        TextColumn::make('phone'),
+        TextColumn::make('address'),
+    ]),
+])->collapsible()
+```
+
+Configure on the table with `->contentGrid()` or `->columns()`.
 
 ## Column Groups
 

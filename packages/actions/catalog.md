@@ -124,6 +124,26 @@ use Filament\Actions\RestoreBulkAction;
 RestoreBulkAction::make()
 ```
 
+### DetachBulkAction
+
+Detach multiple records in a ManyToMany relationship.
+
+```php
+use Filament\Actions\DetachBulkAction;
+
+DetachBulkAction::make()
+```
+
+### DissociateBulkAction
+
+Dissociate multiple records in a HasMany relationship.
+
+```php
+use Filament\Actions\DissociateBulkAction;
+
+DissociateBulkAction::make()
+```
+
 ## Import/Export Actions
 
 ### ImportAction
@@ -321,9 +341,14 @@ Action::make('edit')->button()
 // Link style
 Action::make('edit')->link()
 
+// Icon button
+Action::make('edit')->iconButton()
+
 // Outlined button
 Action::make('edit')->outlined()
 ```
+
+> **Deprecated**: `ButtonAction` and `IconButtonAction` classes are deprecated. Use `Action::make()->button()` and `Action::make()->iconButton()` instead.
 
 ## Action Sizes
 
