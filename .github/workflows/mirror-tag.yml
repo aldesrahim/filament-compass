@@ -1,0 +1,18 @@
+name: Mirror tag to filament-compass-pkg
+
+on:
+  push:
+    tags:
+      - '[0-9]*'
+
+jobs:
+  mirror-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Apply same tag to pkg repo
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          git clone "https://x-access-token:${{ secrets.PKG_PAT }}@github.com/aldesrahim/filament-compass-pkg.git" pkg
+          cd pkg
+          git tag "$TAG"
+          git push origin "$TAG"
