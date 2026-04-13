@@ -322,7 +322,7 @@ SpatieMediaLibraryFileUpload::make('media')
 
 ## RichEditor
 
-WYSIWYG rich text editor.
+WYSIWYG rich text editor using TipTap. Stores HTML by default.
 
 ```php
 use Filament\Forms\Components\RichEditor;
@@ -335,6 +335,151 @@ RichEditor::make('content')
     ])
     ->fileAttachmentsDirectory('content-images')
     ->fileAttachmentsVisibility('public')
+```
+
+### Store as JSON
+
+```php
+RichEditor::make('content')
+    ->json()
+```
+
+Cast to `array` on the Eloquent model when storing as JSON.
+
+### Custom Blocks
+
+Custom blocks users can insert via drag-and-drop sidebar panel.
+
+```php
+use App\RichContentBlocks\HeroBlock;
+use App\RichContentBlocks\CallToActionBlock;
+
+RichEditor::make('content')
+    ->customBlocks([
+        HeroBlock::class,
+        CallToActionBlock::class,
+    ])
+```
+
+Generate a block class:
+
+```bash
+php artisan make:filament-rich-content-custom-block HeroBlock
+```
+
+Basic block class:
+
+```php
+use Filament\Forms\Components\RichEditor\RichContentCustomBlock;
+
+class HeroBlock extends RichContentCustomBlock
+{
+    public static function getId(): string { return 'hero'; }
+    public static function getLabel(): string { return 'Hero section'; }
+}
+```
+
+Optional: open modal for config when block is inserted:
+
+```php
+use Filament\Actions\Action;
+
+public static function configureEditorAction(Action $action): Action
+{
+    return $action->schema([
+        TextInput::make('heading')->required(),
+        TextInput::make('subheading'),
+    ]);
+}
+```
+
+Optional: preview in editor:
+
+```php
+public static function toPreviewHtml(array $config): string
+{
+    return view('rich-content-blocks.hero.preview', $config)->render();
+}
+```
+
+Render to HTML (e.g. in Blade):
+
+```php
+use Filament\Forms\Components\RichEditor\RichContentRenderer;
+
+RichContentRenderer::make($record->content)
+    ->customBlocks([HeroBlock::class, CallToActionBlock::class])
+    ->toHtml()
+```
+
+#### Grouped Custom Blocks
+
+Organize blocks into labeled groups using string keys:
+
+```php
+RichEditor::make('content')
+    ->customBlocks([
+        AlertBlock::class,        // ungrouped, appear first
+        DividerBlock::class,
+        'Marketing' => [
+            HeroBlock::class,
+            CallToActionBlock::class,
+        ],
+        'Media' => [
+            ImageGalleryBlock::class,
+            VideoEmbedBlock::class,
+        ],
+    ])
+```
+
+Groups display with sticky headings in the sidebar panel. When rendering, pass the same grouped structure — groups are ignored during rendering:
+
+```php
+RichContentRenderer::make($record->content)
+    ->customBlocks([
+        'Marketing' => [
+            HeroBlock::class => ['categoryUrl' => $record->category->getUrl()],
+            CallToActionBlock::class,
+        ],
+    ])
+    ->toHtml()
+```
+
+Open the blocks panel by default:
+
+```php
+RichEditor::make('content')
+    ->customBlocks([...])
+    ->activePanel('customBlocks')
+```
+
+### Merge Tags
+
+Insert template variables users can click to add:
+
+```php
+RichEditor::make('content')
+    ->mergeTags(['first_name', 'last_name', 'company'])
+```
+
+### Mentions
+
+`@mention` support with searchable providers:
+
+```php
+use Filament\Forms\Components\RichEditor\MentionProvider;
+
+RichEditor::make('content')
+    ->mentions([
+        MentionProvider::make('@')
+            ->items(['1' => 'Alice', '2' => 'Bob'])
+            ->getSearchResultsUsing(fn (string $search) =>
+                User::where('name', 'like', "%{$search}%")
+                    ->pluck('name', 'id')
+                    ->toArray()
+            )
+            ->url(fn (string $id, string $label): string => route('users.show', $id)),
+    ])
 ```
 
 ## MarkdownEditor

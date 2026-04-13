@@ -10,10 +10,31 @@ Trigger an update when:
 - Breaking changes appear in upgrade guide
 - New patterns are implemented in demo
 - Documentation has been significantly revised
+- A new Filament package is added → also update `sync.sh` and add a new compass docs section
+- A new top-level compass docs directory is created → add it to the `rsync` call in `sync.sh`
 
 ## Pre-Update Scan
 
-### 1. Check Package Versions
+### 0. Triage First (always run this)
+
+```bash
+# Get last scan date from reference/versions.md, then:
+git -C source/filament log --since="YYYY-MM-DD" --oneline
+```
+
+Read the commit messages. Classify each:
+- `chore`/`docs`/`fix` only → skip steps 3–6, go straight to [Update Execution](#update-execution-steps) step 10
+- `feature:` in a specific package → drill into that package only (steps 3–5 scoped to that package)
+- Version bump (`v5.x.y`) → run all steps 1–6 fully
+
+Also run to find changed files (confirms triage):
+
+```bash
+find source/filament/packages -name "*.php" -newer reference/versions.md | grep -v "/tests/" | grep -v "/vendor/"
+find source/demo/app -name "*.php" -newer reference/versions.md
+```
+
+### 1. Check Package Versions (skip if triage shows no version bump)
 
 ```bash
 # Read current versions
@@ -22,14 +43,14 @@ cat source/filament/composer.json | grep -A 50 '"require"'
 
 Compare with last recorded versions in `reference/versions.md`.
 
-### 2. Check Upgrade Guide
+### 2. Check Upgrade Guide (skip if triage shows no version bump)
 
 ```bash
 # Review breaking changes
 cat source/filament/docs/14-upgrade-guide.md
 ```
 
-### 3. Scan for New Components
+### 3. Scan for New Components (skip if triage shows no component additions)
 
 For each package, check for new files:
 
@@ -65,7 +86,7 @@ ls source/filament/packages/panels/src/Resources/
 ls source/filament/packages/panels/src/Auth/
 ```
 
-**Known components as of 2026-04-07** (compare against these to spot additions):
+**Known components as of 2026-04-13** (compare against these to spot additions):
 
 | Package | Components |
 |---------|-----------|
@@ -82,7 +103,7 @@ ls source/filament/packages/panels/src/Auth/
 | widgets | Widget, ChartWidget, StatsOverviewWidget, TableWidget |
 | widgets (deprecated) | BarChartWidget, LineChartWidget, PieChartWidget, DoughnutChartWidget, RadarChartWidget, PolarAreaChartWidget, ScatterChartWidget, BubbleChartWidget |
 
-### 4. Check for Deprecated Methods
+### 4. Check for Deprecated Methods (skip if triage shows only chore/docs commits)
 
 Scan for new `@deprecated` annotations that may have appeared since last scan:
 
@@ -103,9 +124,16 @@ When you find new deprecations, update both:
 - `reference/breaking-changes.md` if it's a breaking API change
 - `reference/common-mistakes.md` if it's a common error pattern
 
-### 5. Check Package Docs
+### 5. Check Package Docs (scope to packages changed per triage)
 
-Each package has its own docs:
+For each package touched in triage, check its upstream docs for new sections:
+
+```bash
+# Read the specific doc file for a changed package, e.g.:
+# cat source/filament/packages/forms/docs/10-rich-editor.md
+```
+
+All package doc paths:
 
 ```bash
 # Package-specific docs
@@ -119,11 +147,11 @@ ls source/filament/packages/widgets/docs/
 ls source/filament/packages/schemas/docs/
 ```
 
-### 6. Review Demo for New Patterns
+### 6. Review Demo for New Patterns (only if triage shows demo-related changes)
 
 ```bash
 # Check for new resources, schemas, tables, widgets
-find source/demo/app/Filament -type f -name "*.php" -newer PLAN.md
+find source/demo/app/Filament -type f -name "*.php" -newer reference/versions.md
 ```
 
 **Demo structure to check for new additions:**
@@ -324,19 +352,18 @@ Each file should start with:
 
 ## Update Execution Steps
 
-1. **Record current state**: Note package versions, compare against `reference/versions.md`
-2. **Run pre-update scan**: Check all source locations against known-component tables in step 3 above
-3. **Check deprecations**: Grep for `@deprecated` in packages — update docs to warn and suggest alternatives
-4. **Process upgrade guide**: Read `source/filament/docs/14-upgrade-guide.md` and extract breaking changes
-5. **Check rector rules**: Read `source/filament/packages/upgrade/src/rector.php` for method renames
-6. **Update component catalogs**: Add new components, remove or mark deprecated ones
-7. **Update method signatures**: If component APIs changed, update method tables and closure param docs
-8. **Update closures reference**: If new injectable parameters appear, update `reference/closures.md`
-9. **Update patterns**: Incorporate new demo patterns from `source/demo/app/Filament/`
-10. **Update reference**: Commands, namespaces, breaking changes
-11. **Sync to package**: Run `bash sync.sh`
-12. **Commit both repos**: Commit `filament-blueprint-clone` then `source/filament-compass-pkg`
-13. **Update version record**: Write new versions and scan date to `reference/versions.md`
+1. **Triage**: Run `git -C source/filament log --since="<last-scan-date>" --oneline` + `find ... -newer reference/versions.md`. Classify commits — this determines which steps below are needed.
+2. **If version bump**: Check package versions (Pre-Update step 1), process upgrade guide (step 2), check rector rules (`source/filament/packages/upgrade/src/rector.php`)
+3. **If feature commits**: Read specific upstream docs for each changed package (Pre-Update step 5), check for new components (step 3), check deprecations (step 4)
+4. **If demo changes**: Review demo for new patterns (Pre-Update step 6), update `patterns/` docs
+5. **Update component catalogs**: Add new components, remove or mark deprecated ones
+6. **Update method signatures**: If component APIs changed, update method tables and closure param docs
+7. **Update closures reference**: If new injectable parameters appear, update `reference/closures.md`
+8. **Update reference**: Commands, namespaces, breaking changes (always update `breaking-changes.md` if upgrade guide has new content)
+9. **Update `sync.sh` if needed**: If a new top-level docs directory was added (e.g. `plugins/`, `ai/`) or a new package was added to Filament, add it to the `rsync` call in `sync.sh`. The current synced dirs are: `COMPASS.md`, `packages/`, `patterns/`, `testing/`, `recipes/`, `reference/`, `architecture/`.
+10. **Sync to package**: Run `bash sync.sh`
+11. **Commit both repos**: Commit `filament-blueprint-clone` then `source/filament-compass-pkg`
+12. **Update version record**: Write new scan date (and versions if bumped) to `reference/versions.md`
 
 ## Version Tracking
 

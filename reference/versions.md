@@ -1,6 +1,6 @@
 # Filament Versions
 
-Last scanned: 2026-04-07
+Last scanned: 2026-04-13
 
 | Package | Version |
 |---------|---------|
