@@ -1,4 +1,4 @@
-name: Mirror tag to filament-compass-pkg
+name: Release and mirror tag
 
 on:
   push:
@@ -6,10 +6,26 @@ on:
       - '[0-9]*'
 
 jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Create GitHub release on filament-compass
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$TAG" \
+            --repo aldesrahim/filament-compass \
+            --title "$TAG" \
+            --generate-notes
+
   mirror-tag:
     runs-on: ubuntu-latest
+    needs: release
     steps:
-      - name: Apply same tag to pkg repo
+      - name: Apply same tag to filament-compass-pkg
         run: |
           TAG="${GITHUB_REF#refs/tags/}"
           git clone "https://x-access-token:${{ secrets.PKG_PAT }}@github.com/aldesrahim/filament-compass-pkg.git" pkg
