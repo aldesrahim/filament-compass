@@ -153,6 +153,8 @@ Action::make('edit')
     ->modalCancelActionLabel('Cancel')
     ->modalFooterActions([...])  // Custom modal actions
     ->slideOver()                // Slide-over modal instead of centered
+    ->slideOverPosition(\Filament\Support\Enums\SlideOverPosition::Start)  // Start or End (default End)
+    ->extraModalOverlayAttributes(['class' => 'custom-overlay'])
 ```
 
 ### Behavior

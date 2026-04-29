@@ -361,6 +361,26 @@ TextInput::make('name')->live(onBlur: true)   // On focus leave
 Select::make('country')->live(debounce: 500)  // 500ms after last change
 ```
 
+## Icon
+
+Display an icon inside a schema:
+
+```php
+use Filament\Schemas\Components\Icon;
+use Filament\Support\Enums\IconSize;
+
+Icon::make('heroicon-o-check-circle')
+    ->color('success')
+    ->size(IconSize::Large)
+    ->tooltip('Verified')
+```
+
+| Method | Description |
+|--------|-------------|
+| `size(IconSize\|string)` | `IconSize::Small`, `Medium`, `Large`, `ExtraLarge` |
+| `color(string)` | Semantic color (`success`, `danger`, `warning`, `info`, `primary`) |
+| `tooltip(string)` | Hover tooltip |
+
 ## EmptyState
 
 Empty state placeholder (no records found, placeholder content).

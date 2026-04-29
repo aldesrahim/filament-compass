@@ -171,6 +171,19 @@ TextColumn::make('id')
     ])
 ```
 
+## Hidden Label
+
+Hide the summarizer label:
+
+```php
+SumSummarizer::make()
+    ->hiddenLabel()
+
+// Conditionally
+CountSummarizer::make()
+    ->hiddenLabel(fn () => ! auth()->user()->isAdmin())
+```
+
 ## Summary Position
 
 Summaries appear at the bottom of the table by default. Control visibility:

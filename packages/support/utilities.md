@@ -249,6 +249,27 @@ Action::make('edit')
 // Available: ExtraSmall, Small, Medium, Large, ExtraLarge, TwoExtraLarge, ThreeExtraLarge, FourExtraLarge, FiveExtraLarge, SixExtraLarge, SevenExtraLarge, Screen, Full
 ```
 
+### Width
+
+```php
+use Filament\Support\Enums\Width;
+
+// Available: ThreeExtraSmall, TwoExtraSmall, ExtraSmall, Small, Medium, Large, ExtraLarge,
+//            TwoExtraLarge, ThreeExtraLarge, FourExtraLarge, FiveExtraLarge, SixExtraLarge, SevenExtraLarge,
+//            None, Full, MinContent, MaxContent, FitContent, Prose, Container,
+//            ScreenSmall, ScreenMedium, ScreenLarge, ScreenExtraLarge, ScreenTwoExtraLarge, Screen
+```
+
+### SlideOverPosition
+
+```php
+use Filament\Support\Enums\SlideOverPosition;
+
+Action::make('edit')
+    ->slideOver()
+    ->slideOverPosition(SlideOverPosition::Start)  // or SlideOverPosition::End (default)
+```
+
 ## Related
 
 - [../panels/panels.md](../panels/panels.md) - Panel colors and fonts

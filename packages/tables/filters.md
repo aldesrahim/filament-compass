@@ -219,6 +219,14 @@ QueryBuilder::make()
 ->deferFilters()  // Apply filters on form submit, not on change
 ```
 
+### Customize Remove-All Action
+
+```php
+->filtersRemoveAllAction(
+    fn (Action $action) => $action->label('Clear all filters')->icon('heroicon-o-x-mark'),
+)
+```
+
 ### Filters Form Columns
 
 ```php

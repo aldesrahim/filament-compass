@@ -86,7 +86,7 @@ ls source/filament/packages/panels/src/Resources/
 ls source/filament/packages/panels/src/Auth/
 ```
 
-**Known components as of 2026-04-13** (compare against these to spot additions):
+**Known components as of 2026-04-29** (compare against these to spot additions):
 
 | Package | Components |
 |---------|-----------|

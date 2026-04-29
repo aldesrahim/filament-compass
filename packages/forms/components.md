@@ -307,6 +307,24 @@ FileUpload::make('documents')
     ->reorderable()
 ```
 
+### Custom Open/Download URLs
+
+```php
+FileUpload::make('document')
+    ->openable()
+    ->downloadable()
+    ->getOpenableFileUrlUsing(fn (string $file): string => Storage::url($file))
+    ->getDownloadableFileUrlUsing(fn (string $file): string => Storage::url($file))
+```
+
+### Temporary URL Expiry
+
+Configure in `config/filament.php`:
+
+```php
+'temporary_file_url_expiry_minutes' => 30,  // Default: 30 minutes
+```
+
 ### Real Example
 
 ```php
@@ -512,7 +530,7 @@ Repeater::make('items')
     ->maxItems(10)
     ->reorderable()
     ->collapsible()
-    ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
+    ->itemLabel(fn (array $state, int $index): ?string => "#{$index}: " . ($state['name'] ?? null))
 ```
 
 ### Relationship Repeater

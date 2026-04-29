@@ -54,6 +54,17 @@ class AdminPanelProvider extends PanelProvider
 | `navigationGroups()` | Custom group order | `['Shop', 'HR']` |
 | `maxNavigationWidth()` | Sidebar width | `'250px'` |
 
+Navigation items support dynamic visibility via `Closure`:
+
+```php
+use Filament\Navigation\NavigationItem;
+
+NavigationItem::make('Admin Panel')
+    ->url('/admin')
+    ->visible(fn () => auth()->user()->isAdmin())
+    ->hidden(fn () => auth()->user()->isBanned())
+```
+
 ### Discovery
 
 | Method | Purpose | Example |
@@ -125,7 +136,16 @@ class AdminPanelProvider extends PanelProvider
 
 | Method | Purpose | Example |
 |--------|---------|---------|
-| `renderHook()` | Add render hooks | `RenderHook::HEADER_START, fn() => ...` |
+| `renderHook()` | Add render hooks | `PanelsRenderHook::HEADER_START, fn() => ...` |
+
+Key render hook constants (from `Filament\Panels\View\PanelsRenderHook`):
+
+| Constant | Location |
+|----------|----------|
+| `PAGE_HEADER_HEADING_BEFORE` | Before page heading |
+| `PAGE_HEADER_HEADING_AFTER` | After page heading |
+| `PAGE_HEADER_ACTIONS_BEFORE` | Before header action buttons |
+| `PAGE_HEADER_ACTIONS_AFTER` | After header action buttons |
 
 ## Colors
 
